@@ -6,23 +6,23 @@ schema:
   name: 小猿双拼
   version: "0.1"
   author:
-    - double pinyin layout by 猿
+    - double pinyin layout by cedar
   description: |
-    朙月拼音＋小鶴雙拼方案norman变体。
+    朙月拼音＋小鶴雙拼norman布局。
   dependencies:
-    - stroke
+    - luna_pinyin
 
 switches:
   - name: ascii_mode
     reset: 0
-    states: [ 中文, 西文 ]
-  - name: full_shape
-    states: [ 半角, 全角 ]
+    states: [ 中, 英 ]
   - name: simplification
     reset: 1
-    states: [ 漢字, 汉字 ]
-  - name: ascii_punct
-    states: [ 。，, ．， ]
+    states: [ 繁, 简 ]
+#  - name: full_shape
+#    states: [ 半角, 全角 ]
+#  - name: ascii_punct
+#    states: [ 。，, ．， ]
 
 engine:
   processors:
@@ -42,7 +42,6 @@ engine:
     - fallback_segmentor
   translators:
     - punct_translator
-    - reverse_lookup_translator
     - script_translator
   filters:
     - simplifier
@@ -97,6 +96,7 @@ translator:
     - xform/(\w)h/$1ie/
     - xform/(\w)d/$1ai/
     - xform/(\w)n/$1an/
+    - xform/ean/en/
     - xform/(\w)g/$1eng/
     - xform/([jqx])s/$1iong/
     - xform/(\w)s/$1ong/
@@ -105,7 +105,6 @@ translator:
     - xform/(\w)t/$1en/
     - xform/([gkhvuirzcs])r/$1uai/
     - xform/([qtdjlpxbymn])r/$1ing/
-    #- xform/(\w)r/$1ing/
     - xform/([jqxnl])l/$1iang/
     - xform/(\w)l/$1uang/
     - xform/(\w)z/$1ou/
@@ -120,17 +119,6 @@ translator:
     - "xform/(^|[ '])i/$1ch/"
     - "xform/(^|[ '])u/$1sh/"
     - xform/([jqxy])v/$1u/
-    - xform/([nl])v/$1ü/
-
-reverse_lookup:
-  dictionary: stroke
-  enable_completion: true
-  prefix: "`"
-  suffix: "'"
-  tips: 〔筆畫〕
-  preedit_format:
-    - xlit/hspnz/一丨丿丶乙/
-  comment_format:
     - xform/([nl])v/$1ü/
 
 punctuator:
