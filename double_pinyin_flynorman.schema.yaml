@@ -18,7 +18,13 @@ switches:
     states: [ 中, 英 ]
   - name: simplification
     reset: 1
-    states: [ 繁, 简 ]
+    #states: [ 繁, 简 ]
+  - options: [ _keyboard_default ]
+    states: [ "　　　　　　　　　　" ]
+  - options: [ _key_Hide ]
+    states: [ ﹀ ]
+#  - options: [ _keyboard_menu ]
+#    states: [ "　☰" ]
 #  - name: full_shape
 #    states: [ 半角, 全角 ]
 #  - name: ascii_punct
