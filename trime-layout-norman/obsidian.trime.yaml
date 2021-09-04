@@ -1,0 +1,798 @@
+name: 耀石
+author: cedar
+
+# 默认:
+height:
+  A: &AAG 50  #字母行 高
+  B: &KGG 50  #空格行 高
+  a: &aaY 0  #圆角
+  b: &aaH 3   #行距
+  c: &aaL 0   #列距
+
+# 增高行:
+  1: &aaM 0.5 #主键
+  2: &szM 1.75 #数字 选单 编辑
+
+# 数字: 选单 编辑
+  A: &SZG 53  #键高
+  D: &szY 0   #圆角
+  B: &szH 0  #行距
+  C: &szL 0  #列距
+
+# 符号:
+  A: &FHG 42.5  #键高
+  A: &FHD 50  #底行
+  B: &fhY 0  #圆角
+  C: &fhH 0  #行距
+  D: &fhL 0  #竖距
+
+# 字符 偏移:
+  1: &symY 1.5  #上标 纵
+  2: &symX 0   #上标 横
+  3: &textY 0   #字符 纵
+  4: &ZJtextY 0   #助记 纵
+  5: &ZJhintY -1.5  #下标 纵
+  6: &FHsymY 1   #符号键盘
+  7: &XDtextY 0   #选单键盘
+  8: &XDhintY -6
+
+style:
+  auto_caps: false #自动句首大写:true|false|ascii
+  background_dim_amount: 0.5
+  candidate_font: ziti.ttf #候选字型
+  candidate_padding: 5 #候选项内边距
+  candidate_spacing: 5 #候选间距
+  candidate_text_size: 24 #候选字号
+  candidate_use_cursor: true #高亮候选项
+  candidate_view_height: 24 #候选区高度
+  color_scheme: default #配色方案
+  comment_font: ziti.ttf #状态栏提示字型
+  comment_height: 10 #状态栏提示区高度
+  comment_on_top: true #状态栏提示在上方true, 右侧false
+  comment_text_size: 6 #状态栏提示字号
+  hanb_font: Ext.ttf #扩充字型
+  horizontal: true #水平模式  横true | 竖false
+  horizontal_gap: *fhL #符号键盘列间距
+
+  #悬浮窗口位置 跟随
+  layout:
+    position: fixed #位置：left|right|left_up|right_up|fixed|bottom_left|bottom_right|top_left|top_right
+    min_length: 0 #候选窗口最小词长
+    max_length: 99 #超过字数则换行
+    sticky_lines: 0 #固顶行数
+    max_entries: 2 #候选窗口最大词条数
+    all_phrases: false #所有满足条件的词语都显示在窗口
+    border: 1 #候选窗口边框宽度
+    max_width: 370 #最大宽度，超过则自动换行
+    max_height: 10 #最大高度
+    min_width: 0 #最小宽度
+    min_height: 0 #最小高度
+    margin_x: 6 #水平边距
+    margin_y: 0 #竖直边距
+    line_spacing: 0 #候选词的行间距(px)
+    line_spacing_multiplier: 1 #候选词的行间距(倍数)
+    spacing: 1 #悬浮窗偏移量
+    round_corner: 0 #候选窗口圆角
+    alpha: 255 #透明度(0-255)
+    elevation: 2 #阴影(>=Android5.0)
+    background: candidate_text_color
+    movable: false #是否可移动窗口，或仅移动一次 true|false|once
+
+  #悬浮窗组件
+  window:
+    - {start: "", move: '', end: ""}
+    - {start: "", composition: "%s", end: " ", letter_spacing: 0} #letter_spacing需要>=Android5.0。不爲0時，會導致不換行的問題
+    - {start: "", label: "", candidate: " %s ", comment: " %s", end: "  ", sep: "  "}  #换行：start: "\n" ，序号：label: "%s."
+
+  key_font: ziti.ttf #键盘字型
+  key_height: *FHG #符号键盘键高
+  key_long_text_size: 15 #两字以上时键字号
+  key_text_size: 21 #键字号
+  key_width: 10.0 #键宽，占银幕宽的百分比
+  keyboards: [.default, default, defaultVJ, menu, layout_edit, qtsz, qtzb, punct_en, qtxh, punct_cn, qtjt] #声明
+  label_text_size: 14 #悬浮窗序号字号
+  label_font: ziti.ttf #标签字型
+  latin_font: latin.ttf #西文字型
+  latin_locale: en_US #西文语言
+  locale: zh_CN #预设语言 zh_TW,zh_CN,zh_HK,""
+  preview_font: ziti.ttf #按键提示字型
+  preview_height: 50 #按键提示高度
+  preview_offset: -10 #按键提示纵向偏移
+  preview_text_size: 36 #按键提示字号
+  proximity_correction: true #无click时是否沿用相邻键功能，位于左右两端的即使否也会沿用
+  reset_ascii_mode: false #不同进程中显示键盘时重置为中文状态（true:重置为中文；false:记忆中英状态）
+  round_corner: *fhY #符号键盘按键圆角半径
+  shadow_radius: 0.0 #按键阴影半径
+  speech_opencc_config: none #语音输入简繁转换
+  symbol_font: ziti.ttf #符号字型
+  symbol_text_size: 9 #符号字号 上标字号
+  text_font: ziti.ttf #编码字型
+  text_size: 16 #编码字号
+  vertical_correction: -3 #按键纵向偏移，负数下移接触面
+  vertical_gap: *fhH #符号键盘行距
+
+fallback_colors:
+  keyboard_back_color: back_color  #键盘背景
+  #悬浮窗
+  border_color: back_color #悬浮窗边框
+  hilited_back_color: text_back_color #悬浮窗首选编码背景
+  hilited_candidate_back_color: back_color #悬浮窗首选背景
+  hilited_text_color: text_color #悬浮窗编码
+  text_back_color: back_color #编码区悬浮窗背景
+  label_color: candidate_text_color #悬浮窗次选序号
+  #气泡
+  preview_back_color: back_color #按键气泡背景
+  preview_text_color: key_text_color #按键气泡文本
+  shadow_color: border_color #按键文字阴影（阴影半径在shadow_radius中设置）
+  #状态栏候选栏
+  candidate_separator_color: back_color #状态栏分割背景
+  candidate_text_color: text_color #CN次选文字色
+  comment_text_color: candidate_text_color #EN次选编码提示
+  hilited_candidate_text_color: comment_text_color #hilited_text_color #首选文字
+  hilited_comment_text_color: candidate_text_color #comment_text_color #首选编码提示
+  #普通键
+  key_back_color: back_color #符号键盘按键背景
+  hilited_key_back_color: hilited_candidate_back_color #高亮按键背景
+  key_text_color: candidate_text_color #按键字母&悬浮窗颜色
+  hilited_key_text_color: key_text_color #高亮按键文本
+  key_symbol_color: comment_text_color #按键上下符号
+  hilited_key_symbol_color: key_symbol_color #高亮按键符号
+
+  #shift键锁定
+  on_key_back_color: hilited_key_back_color #shift锁键时背景（shift键不得设置key_back_color，否则无效）
+  on_key_text_color: comment_text_color #hilited_key_text_color #shift锁键时文本
+  hilited_on_key_back_color: hilited_key_back_color #shift锁定时的高亮背景，按下时
+  hilited_on_key_text_color: on_key_text_color #hilited_key_text_color #shift锁定时的高亮文本
+  #shift键常态及功能键
+  off_key_back_color: key_back_color #功能键及Shift键背景
+  hilited_off_key_back_color: hilited_key_back_color #功能键及shift高亮背景
+  off_key_text_color: key_text_color #功能键及shift键文本，如shift使用背景图标，可另定SHt为透明色
+  hilited_off_key_text_color: off_key_text_color #hilited_key_text_color #功能键及shift键高亮文本
+  color_o: bg_o_rr #选单返回字色
+
+
+#颜色
+colors:
+  1: &蓝 0x007AFE
+  1: &蓝b 0xcc007AFE
+  2: &白 0xffffffff
+  3: &黑 0xff000000
+  4: &红 0xffff0000
+  5: &橙 0xffff7200
+  6: &黑b 0xff333333
+  7: &黑c 0xff888888 
+  8: &白b 0xffeeeeee
+  8: &白c 0xffdddddd
+  9: &灰 0xAAB1BB
+  9: &灰b 0xffe1e1e1
+  10: &QQ灰 0xFFF5F6FA 
+  a: &绿 0xFF82D0D2
+  b: &iOS 0xFFD1D4D9
+  0: &QQ 0xFFF5F6FA
+  0: &QQ2 0xFFEAEDF4 
+
+#配色，
+preset_color_schemes:
+  default:
+    name: "default"
+    back_color: 0x34393F    #状态栏 分割 键盘主背景
+    keyboard_back_color: 0x34393F  #键盘背景
+    hilited_candidate_back_color: *红      #首字 背景
+    hilited_candidate_text_color: *白       #首字色
+    hilited_comment_text_color: *白      #首选 编码字色
+    hilited_key_back_color: 0x00      #按键高亮
+    candidate_text_color: *白      #次选 状态栏字色
+    comment_text_color: 0xFFFFED87      #次选 编码字色
+    off_key_back_color: dark_round_rect.png      #shift 背景
+    on_key_back_color: red_rect.png      #shift 锁定背景
+    off_key_text_color: *白
+    on_key_text_color: *白      #shift 锁定字色
+    key_symbol_color: 0xFFFFED87     #上标字色
+    text_back_color: 0xcc34393F       #悬浮窗背景
+    border_color: 0xcc34393F       #悬浮窗边框
+    key_back_color: gray_rect.png     #默认键帽
+    key_text_color: *白     #默认字色
+    text_color: 0xFFFFED87
+    color_b: 0x00
+    color_y: 0xFFFFED87
+    color_w: *白
+    color_o: *橙     #选单返回
+    bg_space: space.png
+    bg_letter: gray_tall.png
+    bg_d_r: dark_rect.png   #符号键盘功能键
+    bg_d_rr: dark_round_rect.png
+    bg_o_r: orange_rect.png     #符号选中键帽
+    bg_o_rr: orange_round_rect.png
+    bg_g_r: gray_rect.png     #数字键盘数字键帽
+
+
+# 布局，
+preset_keyboards:
+  default:
+    ascii_mode: 0
+    lock: true
+    height: *AAG
+    horizontal_gap: *aaL
+    vertical_gap: *aaH
+    round_corner: *aaY
+    key_text_offset_y: *textY
+    key_symbol_offset_y: *symY
+    key_press_offset_x: 0
+    key_press_offset_y: 3
+    key_symbol_offset_x: *symX
+    key_hint_offset_y: *ZJhintY
+    keyboard_back_color: Dback
+    label_transform: uppercase #uppercase|none 中文模式下的字母标签自动大写
+
+    keys:
+      # 第一行
+      - {click: q, long_click: 1, key_back_color: bg_letter}
+      - {click: w, long_click: 2, key_back_color: bg_letter}
+      - {click: d, long_click: 3, swipe_up: "DeleteCandidate", key_back_color: bg_letter}
+      - {click: f, long_click: 4, key_back_color: bg_letter}
+      - {click: k, long_click: 5, key_back_color: bg_letter}
+      - {click: j, long_click: 6, key_back_color: bg_letter}
+      - {click: u, long_click: 7, key_back_color: bg_letter}
+      - {click: r, long_click: 8, key_back_color: bg_letter}
+      - {click: l, long_click: 9, key_back_color: bg_letter}
+      - {click: "?", long_click: 0, key_back_color: bg_letter}
+      # 第二行
+      - {click: a, long_click: select_all, key_back_color: bg_letter}
+      - {click: s, long_click: ^, swipe_up: Date3, key_back_color: bg_letter}
+      - {click: e, long_click: '~', swipe_up: Date, key_back_color: bg_letter}
+      - {click: t, long_click: _, swipe_up: Date1, key_back_color: bg_letter}
+      - {click: g, long_click: '@', key_back_color: bg_letter}
+      - {click: y, long_click: '#', key_back_color: bg_letter}
+      - {click: n, long_click: '$', key_back_color: bg_letter}
+      - {click: i, long_click: '""{Left}', key_back_color: bg_letter}
+      - {click: o, long_click: "''{Left}", key_back_color: bg_letter}
+      - {click: h, long_click: '(){Left}', key_back_color: bg_letter}
+      # 第三行
+      - {click: z, long_click: undo, key_back_color: bg_letter}
+      - {click: x, long_click: cut, key_back_color: bg_letter}
+      - {click: c, long_click: copy, key_back_color: bg_letter}
+      - {click: v, long_click: paste, key_back_color: bg_letter}
+      - {click: b, long_click: zj_bj, swipe_up: Up, swipe_down: Down, swipe_left: Left, swipe_right: Right, key_back_color: bg_letter}
+      - {click: p, long_click: '\', key_back_color: bg_letter}
+      - {click: m, long_click: ':', key_back_color: bg_letter}
+      - {click: Shift_L, composing: Escape, key_text_size: 13, width: 15}
+      - {click: BackSpace, swipe_up: Delete, key_back_color: bg_d_rr, key_text_size: 30, key_text_offset_y: -6, width: 15}
+      # 第四行
+      - {click: "zj_sz", long_click: zj_fh, has_menu: Page_Down, composing: "", swipe_up: q_xd, key_back_color: bg_d_rr, key_text_size: 13, width: 19} #方案选择
+      - {click: ",", label: "  ，", long_click: ";", key_text_size: 13, key_back_color: bg_d_rr, width: 13}
+      - {click: space, ascii: space1, long_click: Mode_switch, key_text_size: 13, swipe_left: Left, swipe_right: Right, key_back_color: bg_space, key_symbol_color: color_b, width: 36}
+      - {click: ".", label: "  。", key_text_size: 13, long_click: "!", key_back_color: bg_d_rr, width: 13}
+      - {click: Return, long_click: theme_settings, swipe_up: Color_settings, key_back_color: bg_o_rr, key_text_size: 13, width: 19}
+    name: "Default"
+    width: 10
+
+  defaultVJ:
+    __include: /preset_keyboards/default
+    __patch:
+        #"keys/@0/hint": 备用
+    name: "备用助记键盘"
+    width: 10
+
+  #编辑
+  layout_edit:
+    height: *SZG
+    horizontal_gap: *szL
+    vertical_gap: *szH
+    round_corner: *szY
+    key_text_offset_y: *textY
+    keys:
+      # ❶
+      - {click: undo, key_text_size: 13}
+      - {click: Home, hint: 行首, key_text_size: 20, key_hint_offset_y: -4}
+      - {click: "Up", key_back_color: bg_o_r, key_text_size: 13}
+      - {click: End, hint: 行尾, key_text_size: 20, key_hint_offset_y: -4}
+      - {click: "K_back1", key_text_size: 11, key_back_color: bg_d_r, width: 20}
+      # ❷
+      - {click: redo, key_text_size: 13}
+      - {click: "Left", key_back_color: bg_o_r, key_text_size: 13}
+      - {click: "Shift1", key_text_size: 25}
+      - {click: "Right", key_back_color: bg_o_r, key_text_size: 13}
+      - {click: "space2", key_text_size: 13, key_back_color: bg_d_r, width: 20}
+      # ❸
+      - {click: paste_clip, key_text_size: 13, key_back_color: bg_g_r}
+      - {click: "Tab1", key_text_size: 13}
+      - {click: "Down", key_back_color: bg_o_r, key_text_size: 13}
+      - {click: "select_H", hint: 选中行, key_text_size: 18, key_hint_offset_y: -4}
+      - {click: "BackSpace", swipe_up: DelH, key_text_size: 30, key_back_color: bg_d_r, width: 20}
+      # ❹
+      - {click: "select_all", key_text_size: 13}
+      - {click: "cut", key_text_size: 13}
+      - {click: "copy", key_text_size: 13}
+      - {click: "paste", key_text_size: 13}
+      - {click: "Return", key_text_size: 13, key_back_color: bg_d_r, width: 20}
+      # 增高行
+      - {height: *szM, width: 100}
+    name: "编辑。"
+    width: 20
+
+  #选单
+  menu:
+    height: *SZG 
+    horizontal_gap: *szL
+    vertical_gap: *szH
+    round_corner: *szY
+    key_text_offset_y: *textY
+    keys:
+      # 第一行
+      - {click: "", key_back_color: 0x00, width: 10}
+      - {click: "q_sx", hint: 刷　新, key_text_size: 17, key_back_color: 0x00, key_symbol_color: candidate_text_color}
+      - {click: "Deploy", hint: 部　署, key_text_size: 17, key_back_color: 0x00, key_symbol_color: candidate_text_color}
+      - {click: "Menu", hint: 方　案, key_text_size: 23, key_text_offset_y: -2, key_back_color: 0x00, key_symbol_color: candidate_text_color}
+      - {click: "IME_switch", hint: 输入法, key_text_size: 18, key_back_color: 0x00, key_symbol_color: candidate_text_color}
+      - {click: "Hint_switch", hint: 提　示, key_text_size: 20, key_back_color: 0x00, key_symbol_color: candidate_text_color}
+      - {click: "", key_back_color: 0x00, width: 10}
+      # 第二行
+      - {click: "", key_back_color: 0x00, width: 10}
+      - {click: "t_fh2", label: Ⓜ, hint: 默　认, key_text_size: 16, key_back_color: 0x00, key_symbol_color: candidate_text_color}
+      - {click: "q_zhuji", hint: 助　记, key_text_size: 16, key_back_color: 0x00, key_symbol_color: candidate_text_color}
+      - {click: "Full_Half1", hint: 全半角, key_text_size: 16, key_back_color: 0x00, key_symbol_color: candidate_text_color}
+      - {click: "Candidate_switch", hint: 候选栏, key_text_size: 18, key_back_color: 0x00, key_symbol_color: candidate_text_color}
+      - {click: "TV_bdhy", hint: 主题群, key_text_size: 15, key_back_color: 0x00, key_symbol_color: candidate_text_color}
+      - {click: "", key_back_color: 0x00, width: 10}
+      # 第三行
+      - {click: "", key_back_color: 0x00, width: 10}
+      - {click: "t_fho", key_back_color: 0x00}
+      - {click: "t_fho", key_back_color: 0x00}
+      - {click: "t_fho", key_back_color: 0x00}
+      - {click: "t_fho", key_back_color: 0x00}
+      - {click: "f_back", key_text_color: color_o, key_back_color: 0x00}
+      - {click: "", key_back_color: 0x00, width: 10}
+      # 第四行
+      - {click: "t_xdfh", key_back_color: 0x00, key_text_color: key_symbol_color, key_text_size: 12, width: 100}
+      # 增高行
+      - {height: *szM, width: 100}
+    name: "选单。"
+    width: 16
+
+  #数字
+  qtsz:
+    height: *SZG
+    horizontal_gap: *szL
+    vertical_gap: *szH
+    round_corner: *szY
+    key_text_offset_y: *textY
+    keys:
+      # 第一行
+      - {click: "+", key_text_size: 16, key_back_color: bg_d_r, hilited_key_back_color: AAH}
+      - {click: 1, key_back_color: bg_g_r}
+      - {click: 2, key_back_color: bg_g_r}
+      - {click: 3, key_back_color: bg_g_r}
+      - {click: "×", key_back_color: bg_d_r, hilited_key_back_color: AAH}
+      # 第二行
+      - {click: "-", key_back_color: bg_d_r, hilited_key_back_color: AAH}
+      - {click: 4, key_back_color: bg_g_r}
+      - {click: 5, key_back_color: bg_g_r}
+      - {click: 6, key_back_color: bg_g_r}
+      - {click: "÷", key_text_size: 19, key_back_color: bg_d_r, hilited_key_back_color: AAH}
+      # 第三行
+      - {click: "zj_fh", key_text_size: 13, key_back_color: bg_d_r, hilited_key_back_color: AAH}
+      - {click: 7, key_back_color: bg_g_r}
+      - {click: 8, key_back_color: bg_g_r}
+      - {click: 9, key_back_color: bg_g_r}
+      - {click: "BackSpace", swipe_up: DelH, key_text_size: 30, key_text_offset_y: -5, key_back_color: bg_d_r}
+      # 第四行
+      - {click: "K_back1", key_text_size: 13, key_back_color: bg_d_r, hilited_key_back_color: AAH}
+      - {click: "=", key_back_color: bg_d_r, hilited_key_back_color: AAH}
+      - {click: 0, key_back_color: bg_g_r}
+      - {click: ".", key_text_size: 19, key_back_color: bg_d_r, hilited_key_back_color: AAH}
+      - {click: "Return", key_text_size: 13, key_back_color: bg_o_r, hilited_key_back_color: AAH}
+      # 增高行
+      - {height: *szM, width: 100}
+    name: "Number"
+    width: 20
+
+  punct_en:
+    ascii_mode: 1
+    height: *SZG
+    horizontal_gap: *szL
+    vertical_gap: *szH
+    round_corner: *szY
+    key_text_offset_y: *textY
+    keys:
+      # ❶
+      - {click: "fh_yb", key_back_color: bg_o_r, width: 14}
+      - {click: ",", key_text_size: 15}
+      - {click: ".", key_text_size: 15}
+      - {click: "?", key_text_size: 15}
+      - {click: "!", key_text_size: 15}
+      - {click: ":", key_text_size: 15}
+      - {click: ";", key_text_size: 15}
+      - {click: "fh_xh", key_back_color: bg_d_r, width: 14}
+      # ❷
+      - {click: "fh_zb", key_back_color: bg_d_r, width: 14}
+      - {click: "`", key_text_size: 15}
+      - {click: "%", key_text_size: 15}
+      - {click: "#", key_text_size: 15}
+      - {click: "~", key_text_size: 15}
+      - {click: "^", key_text_size: 15}
+      - {click: "_", key_text_size: 15}
+      - {click: "fh_jt", key_back_color: bg_d_r, width: 14}
+      # ❸
+      - {click: "zj_sz", key_back_color: bg_d_r, width: 14}
+      - {click: "*", key_text_size: 15}
+      - {click: "/", key_text_size: 15}
+      - {click: "\\", key_text_size: 15}
+      - {click: "$", key_text_size: 15}
+      - {click: "&", key_text_size: 15}
+      - {click: "|", key_text_size: 15}
+      - {click: "BackSpace", swipe_up: DelH, key_text_size: 33, key_text_offset_y: -5, key_back_color: bg_d_r, width: 14}
+      # ❹
+      - {click: "t_fh", key_back_color: bg_d_r, width: 14}
+      - {click: '""{Left}', key_text_size: 15}
+      - {click: "''{Left}", key_text_size: 15}
+      - {click: "(){Left}", key_text_size: 15}
+      - {click: "[]{Left}", key_text_size: 15}
+      - {click: "<>{Left}", key_text_size: 15}
+      - {click: "{}{Left}", key_text_size: 15}
+      - {click: "Return", key_back_color: bg_o_r, width: 14}
+      # 第六行
+      - {height: *szM, width: 100}
+    name: "punctuation en"
+    width: 12
+
+  punct_cn:
+    ascii_mode: 0
+    height: *SZG
+    horizontal_gap: *szL
+    vertical_gap: *szH
+    round_corner: *szY
+    key_text_offset_y: *textY
+    keys:
+      # ❶
+      - {click: "fh_yb", key_back_color: bg_d_r, width: 14}
+      - {click: "，", key_text_size: 15}
+      - {click: "。", key_text_size: 15}
+      - {click: "？", key_text_size: 15}
+      - {click: "！", key_text_size: 15}
+      - {click: "：", key_text_size: 15}
+      - {click: "；", key_text_size: 15}
+      - {click: "fh_xh", key_back_color: bg_d_r, width: 14}
+      # ❷
+      - {click: "fh_zb", key_back_color: bg_o_r, width: 14}
+      - {click: "｀", key_text_size: 15}
+      - {click: "、", key_text_size: 15}
+      - {click: "·", key_text_size: 15}
+      - {click: "～", key_text_size: 15}
+      - {click: "……", key_text_size: 15}
+      - {click: "@", key_text_size: 15}
+      - {click: "fh_jt", key_back_color: bg_d_r, width: 14}
+      # ❸
+      - {click: "zj_sz", key_back_color: bg_d_r, width: 14}
+      - {click: "ˇ", key_text_size: 15}
+      - {click: "¨", key_text_size: 15}
+      - {click: "ˉ", key_text_size: 15}
+      - {click: "—", key_text_size: 15}
+      - {click: "＿", key_text_size: 15}
+      - {click: "￥", key_text_size: 15}
+      - {click: "BackSpace", swipe_up: DelH, key_text_size: 33, key_text_offset_y: -5, key_back_color: bg_d_r, width: 14}
+      # ❹
+      - {click: "t_fh", key_back_color: bg_d_r, width: 14}
+      - {click: "“”{Left}", key_text_size: 15}
+      - {click: "‘’{Left}", key_text_size: 15}
+      - {click: "（）{Left}", key_text_size: 15}
+      - {click: "［］{Left}", key_text_size: 15}
+      - {click: '《》{Left}', key_text_size: 15}
+      - {click: "【】{Left}", key_text_size: 15}
+      - {click: "Return", key_back_color: bg_o_r, width: 14}
+      # 第六行
+      - {height: *szM, width: 100}
+    name: "punctuation cn"
+    width: 12
+
+  qtxh:
+    ascii_mode: 0
+    height: *SZG
+    horizontal_gap: *szL
+    vertical_gap: *szH
+    round_corner: *szY
+    key_text_offset_y: *textY
+    keys:
+      # ❶
+      - {click: "fh_yb", key_back_color: bg_d_r, width: 14}
+      - {click: "❶"}
+      - {click: "❷"}
+      - {click: "❸"}
+      - {click: "❹"}
+      - {click: "❺"}
+      - {click: "fh_xh", key_back_color: bg_o_r, width: 14}
+      # ❷
+      - {click: "fh_zb", key_back_color: bg_d_r, width: 14}
+      - {click: "❻"}
+      - {click: "❼"}
+      - {click: "❽"}
+      - {click: "❾"}
+      - {click: "❿"}
+      - {click: "fh_jt", key_back_color: bg_d_r, width: 14}
+      # ❸
+      - {click: "zj_sz", key_back_color: bg_d_r, width: 14}
+      - {click: "①"}
+      - {click: "②"}
+      - {click: "③"}
+      - {click: "④"}
+      - {click: "⑤"}
+      - {click: "BackSpace", swipe_up: DelH, key_text_size: 33, key_text_offset_y: -5, key_back_color: bg_d_r, width: 14}
+      # ❹
+      - {click: "t_fh", key_back_color: bg_d_r, width: 14}
+      - {click: "⑥"}
+      - {click: "⑦"}
+      - {click: "⑧"}
+      - {click: "⑨"}
+      - {click: "⑩"}
+      - {click: "Return", key_back_color: bg_o_r, width: 14}
+      # 第六行
+      - {height: *szM, width: 100}
+    name: "序号。"
+    width: 14.4
+
+  qtjt:
+    ascii_mode: 0
+    height: *SZG
+    horizontal_gap: *szL
+    vertical_gap: *szH
+    round_corner: *szY
+    key_text_offset_y: *textY
+    keys:
+      # ❶
+      - {click: "fh_yb", key_back_color: bg_d_r, width: 14}
+      - {click: "️↑️️"}
+      - {click: "↓️️️"}
+      - {click: "←️️"}
+      - {click: "→️️"}
+      - {click: "fh_xh", key_back_color: bg_d_r, width: 14}
+      # ❷
+      - {click: "fh_zb", key_back_color: bg_d_r, width: 14}
+      - {click: ️⇧, key_text_size: 19}
+      - {click: ️⇩️, key_text_size: 19}
+      - {click: ⇦}
+      - {click: ⇨}
+      - {click: "fh_jt", key_back_color: bg_o_r, width: 14}
+      # ❸
+      - {click: "zj_sz", key_back_color: bg_d_r, width: 14}
+      - {click: "↻"}
+      - {click: "↺"}
+      - {click: ↩}
+      - {click: "※"}
+      - {click: "BackSpace", swipe_up: DelH, key_text_size: 33, key_text_offset_y: -5, key_back_color: bg_d_r, width: 14}
+      # ❹
+      - {click: "t_fh", key_back_color: bg_d_r, width: 14}
+      - {click: "✺"}
+      - {click: "❃"}
+      - {click: "☆️"}
+      - {click: "✯️"}
+      - {click: "Return", key_back_color: bg_o_r, width: 14}
+      # 第六行
+      - {height: *szM, width: 100}
+    name: "箭头。"
+    width: 18
+
+android_keys:
+  name: [VoidSymbol, SOFT_LEFT, SOFT_RIGHT, HOME, BACK, CALL, ENDCALL,
+    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+    asterisk, numbersign, Up, Down, Left, Right, CENTER,
+    VOLUME_UP, VOLUME_DOWN, POWER, CAMERA, Clear,
+    a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z,
+    comma, period, Alt_L, Alt_R, Shift_L, Shift_R, Tab, space,
+    SYM, EXPLORER, ENVELOPE, Return, BackSpace,
+    grave, minus, equal, bracketleft, bracketright, backslash, semicolon, apostrophe, slash, at,
+    NUM, HEADSETHOOK, FOCUS, plus, Menu, NOTIFICATION, Find,
+    MEDIA_PLAY_PAUSE, MEDIA_STOP, MEDIA_NEXT, MEDIA_PREVIOUS, MEDIA_REWIND, MEDIA_FAST_FORWARD, MUTE,
+    Page_Up, Page_Down, PICTSYMBOLS, Mode_switch,
+    BUTTON_A, BUTTON_B, BUTTON_C, BUTTON_X, BUTTON_Y, BUTTON_Z,
+    BUTTON_L1, BUTTON_R1, BUTTON_L2, BUTTON_R2,
+    BUTTON_THUMBL, BUTTON_THUMBR, BUTTON_START, BUTTON_SELECT, BUTTON_MODE,
+    Escape, Delete, Control_L, Control_R, Caps_Lock, Scroll_Lock, Meta_L, Meta_R,
+    function, Sys_Req, Pause, Home, End, Insert, Next,
+    MEDIA_PLAY, MEDIA_PAUSE, MEDIA_CLOSE, MEDIA_EJECT, MEDIA_RECORD,
+    F1, F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12,
+    Num_Lock, KP_0, KP_1, KP_2, KP_3, KP_4, KP_5, KP_6, KP_7, KP_8, KP_9,
+    KP_Divide, KP_Multiply, KP_Subtract, KP_Add, KP_Decimal, KP_Separator, KP_Enter, KP_Equal,
+    parenleft, parenright,
+    VOLUME_MUTE, INFO, CHANNEL_UP, CHANNEL_DOWN, ZOOM_IN, ZOOM_OUT,
+    TV, WINDOW, GUIDE, DVR, BOOKMARK, CAPTIONS, SETTINGS,
+    TV_POWER, TV_INPUT, STB_POWER, STB_INPUT, AVR_POWER, AVR_INPUT,
+    PROG_RED, PROG_GREEN, PROG_YELLOW, PROG_BLUE, APP_SWITCH,
+    BUTTON_1, BUTTON_2, BUTTON_3, BUTTON_4, BUTTON_5, BUTTON_6, BUTTON_7, BUTTON_8,
+    BUTTON_9, BUTTON_10, BUTTON_11, BUTTON_12, BUTTON_13, BUTTON_14, BUTTON_15, BUTTON_16,
+    LANGUAGE_SWITCH, MANNER_MODE, 3D_MODE, CONTACTS, CALENDAR, MUSIC, CALCULATOR,
+    Zenkaku_Hankaku, Eisu_toggle, Muhenkan, Henkan, Hiragana_Katakana, yen, RO, Kana_Lock,
+    ASSIST, BRIGHTNESS_DOWN, BRIGHTNESS_UP, MEDIA_AUDIO_TRACK,
+    SLEEP, WAKEUP, PAIRING, MEDIA_TOP_MENU, '11', '12', LAST_CHANNEL, TV_DATA_SERVICE, VOICE_ASSIST,
+    TV_RADIO_SERVICE, TV_TELETEXT, TV_NUMBER_ENTRY, TV_TERRESTRIAL_ANALOG, TV_TERRESTRIAL_DIGITAL,
+    TV_SATELLITE, TV_SATELLITE_BS, TV_SATELLITE_CS, TV_SATELLITE_SERVICE, TV_NETWORK, TV_ANTENNA_CABLE,
+    TV_INPUT_HDMI_1, TV_INPUT_HDMI_2, TV_INPUT_HDMI_3, TV_INPUT_HDMI_4,
+    TV_INPUT_COMPOSITE_1, TV_INPUT_COMPOSITE_2, TV_INPUT_COMPONENT_1, TV_INPUT_COMPONENT_2, TV_INPUT_VGA_1,
+    TV_AUDIO_DESCRIPTION, TV_AUDIO_DESCRIPTION_MIX_UP, TV_AUDIO_DESCRIPTION_MIX_DOWN,
+    TV_ZOOM_MODE, TV_CONTENTS_MENU, TV_MEDIA_CONTEXT_MENU, TV_TIMER_PROGRAMMING,
+    Help, NAVIGATE_PREVIOUS, NAVIGATE_NEXT, NAVIGATE_IN, NAVIGATE_OUT,
+    STEM_PRIMARY, STEM_1, STEM_2, STEM_3,
+    Pointer_UpLeft, Pointer_DownLeft, Pointer_UpRight, Pointer_DownRight,
+    MEDIA_SKIP_FORWARD, MEDIA_SKIP_BACKWARD, MEDIA_STEP_FORWARD, MEDIA_STEP_BACKWARD,
+    SOFT_SLEEP, CUT, COPY, PASTE,
+    SYSTEM_NAVIGATION_UP, SYSTEM_NAVIGATION_DOWN, SYSTEM_NAVIGATION_LEFT, SYSTEM_NAVIGATION_RIGHT,
+    A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z,
+    exclam, quotedbl, dollar, percent, ampersand, colon, less, greater, question, asciicircum, underscore, braceleft, bar, braceright, asciitilde]
+  symbols: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ!"$%&:<>?^_{|}~'
+  when:
+    ascii: 西文标签
+    paging: 翻页标签
+    has_menu: 菜单标签
+    composing: 输入状态标签
+    #always: 始终
+    #hover: 滑过
+    combo: 并击
+    click: 单按
+    long_click: 长按
+    #double_click: 双按
+    swipe_left: 左滑
+    swipe_right: 右滑
+    swipe_up: 上滑
+    swipe_down: 下滑
+  property:
+    width: 宽度
+    height: 高度
+    gap: 间隔
+    preview: 预览
+    hint: 提示
+    label: 标签
+    text: 文本
+    states: 状态标签
+    repeatable: 连续按键
+    functional: 功能键
+    shift_lock: Shift锁定 #ascii_long: 英文长按中文单按锁定, long: 长按锁定, click: 单按锁定
+  action:
+    command: 命令
+    option: 参数
+    select: 选择
+    toggle: 状态
+    send: 按键
+    
+preset_keys:
+  #安卓  预设  t_ 按键
+  #主键盘——
+  zj_fh: {label: "符号", send: Eisu_toggle, select: "punct_en"}
+  zj_sz: {label: "123", send: Eisu_toggle, select: "qtsz"}
+  zj_bj: {label: "编辑", send: Eisu_toggle, select: "layout_edit"}
+  theme_settings: {label: 主题, send: SETTINGS, option: "theme"} #主题
+
+  # 符号——
+  fh_jt: {label: "箭头", send: Eisu_toggle, select: "qtjt"}
+  fh_xh: {label: "序号", send: Eisu_toggle, select: "qtxh"}
+
+  fh_yb: {label: "英标", send: Eisu_toggle, select: "punct_en"}
+  fh_zb: {label: "中标", send: Eisu_toggle, select: "punct_cn"}
+
+  #编辑——
+  q_xd: {label: "选单", send: Eisu_toggle, select: "menu"}
+  q_sx: {label: "⇋️", functional: false, text: "{Schema_switch}{Schema_switch}"}  #刷新
+  q_zhuji: {label: Ⓙ, functional: false, send: Eisu_toggle, select: "defaultVJ"}
+
+  t_fh: {label: 返回, functional: false, send: Eisu_toggle, select: .default} #返回主键盘
+  t_fh2: {label: Ⓜ, functional: false, send: Eisu_toggle, select: .default} #选单默认
+  t_fho: {label: " ", send: Eisu_toggle, select: .default} #返回主键盘
+  K_sx: {label: "3选", functional: false, text: "{Right}{Right}{space}"}
+  t_jh: {label: ".", functional: false, commit: "."}
+  t_xdfh: {label: "暗夜 1.1.0", send: Eisu_toggle, select: .default}
+
+# 编辑
+
+  Shift_R: {label: Enter, send: Shift_R}
+  Caps_Lock: {label: Caps, send: Caps_Lock}
+  Shift_L: {functional: true, label: Shift, send: Shift_L, shift_lock: ascii_long}  # 中文状态一次锁定，英文状态长按锁定
+  Shift_L1: {functional: true, label: Shift, send: Shift_L, shift_lock: long}  # 中文状态长按锁定
+  Shift1: {label: ☩, preview: ☩, send: Shift_L, shift_lock: click}  # 英文状态一次锁定
+  Return: {label: Enter, preview: ↩, send: Return}
+  Return1: {label: Enter, repeatable: true, preview: ↩, send: Return}
+  Hide: {label: ﹀, functional: false, send: BACK}
+  BackSpace: {label: ↼️️, preview: ⌫, repeatable: true, send: BackSpace}
+  BackSpace1: {label: ⌫, preview: ⌫, repeatable: true, functional: false, send: BackSpace}
+  space: {repeatable: false, preview: ␣, functional: false, send: space} #空格
+  space1: {repeatable: true, preview: ␣, label: ️️English, functional: true, send: space}
+  space2: {repeatable: true, preview: ␣, label: ␣, functional: true, send: space}
+  space3: {repeatable: true, preview: ␣, label: "◉️ Do one thing at a time", functional: false, send: space}
+  Clear: {label: 全清, send: Clear}
+  Escape: {label: Esc, functional: false, send: Escape}
+  Home: {label: ⇤, send: Home, functional: false}
+  Insert: {label: Ins, send: Insert}
+  Delete: {label: Del, send: Delete, repeatable: true, functional: false}
+  DelH: {label: "Del↔", functional: false, text: "{End}{Shift+Home}{Delete}"}  #删除行
+  End: {label: ⇥, send: End, functional: false}
+  Page_Up: {label: △, send: Page_Up, functional: false}
+  Page_Down: {label: ▽, send: Page_Down, functional: false}
+  Left: {label: ←, send: Left, repeatable: true, functional: false}
+  Left1: {label: ⇦, send: Control+Left, repeatable: true, functional: false}
+  Down: {label: ↓, send: Down, repeatable: true, functional: false}
+  Up: {label: ↑, send: Up, repeatable: true, functional: false}
+  Right: {label: →, send: Right, repeatable: true, functional: false}
+  Right1: {label: ⇨, send: Control+Right, repeatable: true, functional: false}
+  select_all: {label: 全选, functional: false, send: Control+a}
+  select_all1: {label: " ", functional: false, send: Control+a}
+  Tab1: {label: Tab, functional: false, preview: '↹', repeatable: false, text: '	'}
+  cut: {label: 剪切, functional: false, send: Control+x}
+  cut1: {label: " ", functional: false, send: Control+x}
+  select_H: {label: ↔, functional: false, text: "{End}{Shift+Home}"}  #选择行
+  copy: {label: 复制, functional: false, send: Control+c}
+  copy1: {label: " ", functional: false, send: Control+c}
+  paste: {label: 粘贴, functional: false, send: Control+v}
+  paste2: {label: ▣, functional: true, send: Control+v}
+  paste1: {label: " ", functional: false, send: Control+v}
+  paste_text: {label: 贴上文本, send: Control+Shift+Alt+v} #>=Android 6.0
+  share_text: {label: 分享, send: Control+Alt+s} #>=Android 6.0
+
+  redo: {label: 重做, functional: false, send: Control+y} # 重做, >=Android 6.0
+  undo: {label: 撤销, functional: false, send: Control+z} # 撤销 
+  paste_clip: {label: 剪贴板, send: function, command: clipboard}
+
+  JUHC: {label: '  。', send: period}
+  DZHC: {label: '  ，', send: comma}
+  # rime组合键
+  F4: {label: 方案菜单, send: F4} 
+  BackToPreviousSyllable: {label: 删音节, send: Control+BackSpace}
+  CommitRawInput: {label: 编码, send: Control+Return}
+  CommitScriptText: {label: 编码, send: Shift+Return}
+  CommitComment: {label: 编码, send: Control+Shift+Return}
+  DeleteCandidate: {label: 删词, send: Control+Delete, functional: false}
+  # rime状态
+  Mode_switch: {toggle: ascii_mode, functional: false, send: Mode_switch, states: [ 中文, En ]}
+  Full_Half: {toggle: full_shape, functional: false, send: Mode_switch, states: [ ◐, ● ]}
+  Full_Half1: {toggle: full_shape, functional: false, text: "{Full_Half}{K_back}", send: Mode_switch, states: [ ◐, ● ]}
+  simplification: {toggle: simplification, send: Mode_switch, states: [ 简体, 繁体 ]}
+  simplification1: {toggle: simplification, functional: false, text: "{simplification}{K_back}", send: Mode_switch, states: [ ▸Ⓕ, Ⓙ◂]}
+  Charset_switch: {toggle: extended_charset, send: Mode_switch, states: [ 常用, 增广 ]}
+  Punct_switch: {toggle: ascii_punct, send: Mode_switch, states: [ "，。", " ,　. " ]}
+  Punct_switch1: {toggle: ascii_punct, functional: false, text: "{Punct_switch}{K_back}", send: Mode_switch, states: [ " ，。", ", ." ]}
+  Candidate_switch: {toggle: _hide_candidate, functional: false, send: Mode_switch, states: [ ☐, ─ ]}
+  Candidate_switch1: {toggle: _hide_candidate, functional: false, text: "{Candidate_switch}{K_back}", send: Mode_switch, states: [ ☐, ─ ]}
+  Comment_switch: {toggle: _hide_comment, send: Mode_switch, states: [ ZI.., "ZI  "]}
+  Color_switch: {label: ◲, functional: false, send: PROG_RED} #配色
+  Hint_switch: {toggle: _hide_key_hint, functional: false, send: Mode_switch, states: [ ≑, ≟]}
+  # trime设置
+  IME_switch: {label: '⌨', functional: false, send: LANGUAGE_SWITCH} #彈出對話框選擇輸入法
+  IME_switch1: {label: ●, functional: false, send: LANGUAGE_SWITCH}
+  IME_last: {label: 上一输入法, send: LANGUAGE_SWITCH, select: .last} #直接切換到上一輸入法
+  IME_next: {label: 下一输入法, send: LANGUAGE_SWITCH, select: .next}
+  K_back: {label: 返回, send: Eisu_toggle, select: .last_lock}
+  f_back: {label: Ⓑ 返回, send: Eisu_toggle, select: .last_lock}
+  K_back1: {label: "返回", functional: false, send: Eisu_toggle, select: .last_lock}
+  K_backCD: {label: ▼, send: Eisu_toggle, select: .last_lock}
+  K_backCDY: {label: ▶Ⅱ, send: Eisu_toggle, select: .last_lock}
+  K_backCDZ: {label: Ⅰ◀, send: Eisu_toggle, select: .last_lock}
+  K_default: {label: 中文, send: Eisu_toggle, select: .default}
+  K_menu: {label: ☼, preview: ' ', functional: false, send: Eisu_toggle, select: menu}
+  K_letter: {label: abc, send: Eisu_toggle, select: letter}
+  K_switch: {label: 键盘, send: Eisu_toggle, select: .next}
+  K_number: {label: 123, send: Eisu_toggle, select: number}
+  K_symbols: {label: ✡, functional: false, send: Eisu_toggle, select: symbolsEN}
+  K_move: {label: ❖, send: Eisu_toggle, select: move}
+  K_last: {label: 后退, functional: false, send: Eisu_toggle, select: .next}
+  Schema_switch: {label: ⇋️️️, functional: false, send: Control+Shift+1} #刷新 ⇄
+  Schema_Eng: {label: En, send: Control+Shift+0}
+  Help: {label: 说明, send: Help}
+  Info: {label: 关于, send: INFO}
+  Menu: {label: ✡, functional: false, send: Menu} #方案选单
+  Settings: {label: ⚙, functional: false, send: SETTINGS}
+  Color_settings: {label: 配色, send: SETTINGS, option: "color"} #配色
+  Schema_settings: {label: 方案, send: SETTINGS, option: "schema"}
+  
+  # trime命令
+  Date: {label: "日期", send: function, command: date, option: "yyyy.M.d E HH:mm"}
+  Date1: {label: " ", send: function, command: date, option: "yyyy.M.d"}
+  Date2: {label: "年月日", send: function, command: date, option: "yyyy年M月d日"}
+  Date3: {label: "年月", send: function, command: date, option: "yyyy年M月"}
+  ChineseDate: {label: " ", send: function, command: date, option: "zh_CN@calendar=chinese"} #农历等日期(>=Android 7.0)：date 语言@calendar=历法 格式。具体參見https://developer.android.com/reference/android/icu/util/Calendar.html
+  EnglishDate: {label: " ", send: function, command: date, option: "en_US@calendar=english"}
+  Time: {label: " ", send: function, command: date, option: " HH:mm E"}
+  TrimeCmp: {label: 同文组件, send: function, command: run, option: "com.osfans.trime/ .Pref"} #运行程序指定组件：run包名/组件名
+  HDSS: {label: ◫, functional: false, send: function, command: run, option: "https://www.zdic.net/hans/?q=%3$s"}
+  LLQ: {label: ◰, functional: false, send: function, command: web_search, option: "%4$s"} # 直达光标前http开头的网址或搜索光标前内容
+  Deploy: {label: ♻, functional: false, send: function, command: broadcast, option: "com.osfans.trime.deploy"} #部署⟲
+  Sync: {label: 同步, send: function, command: broadcast, option: "com.osfans.trime.sync"}
+  Share: {label: 分享, functional: false, command: send, option: "%1$s"} #分享指定文本: %s或者%1$s爲當前字符
+
+  M2T: {label: mt, functional: false, send: function, command: run, option: "bin.mt.plus"} #MT2app包名
+  TV_bdhy: {label: 百词, functional: false, send: function, command: run, option: "https://hanyu.baidu.com/"}
+  #底部 尾部 末尾
