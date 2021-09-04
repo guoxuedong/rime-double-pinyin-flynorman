@@ -24,7 +24,7 @@ switches:
   - options: [ _key_Hide ]
     states: [ ﹀ ]
 #  - options: [ _keyboard_menu ]
-#    states: [ "　☰" ]
+#    states: [ "M" ]
 #  - name: full_shape
 #    states: [ 半角, 全角 ]
 #  - name: ascii_punct
