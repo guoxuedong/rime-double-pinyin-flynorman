@@ -273,6 +273,52 @@ preset_keyboards:
     name: "备用助记键盘"
     width: 10
 
+  double_key_flynorman:
+    ascii_mode: 0
+    lock: true
+    height: *AAG
+    horizontal_gap: *aaL
+    vertical_gap: *aaH
+    round_corner: *aaY
+    key_text_offset_y: *textY
+    key_symbol_offset_y: *symY
+    key_press_offset_x: 0
+    key_press_offset_y: 3
+    key_symbol_offset_x: *symX
+    key_hint_offset_y: *ZJhintY
+    keyboard_back_color: Dback
+    label_transform: uppercase #uppercase|none 中文模式下的字母标签自动大写
+
+    keys:
+      # 第一行
+      - {click: q, label: "Q W", long_click: 1, key_back_color: bg_letter, width: 20}
+      - {click: d, label: "D F", long_click: 2, key_back_color: bg_letter, width: 20}
+      - {click: k, label: "K J", long_click: 3, key_back_color: bg_letter, width: 20}
+      - {click: u, label: "U R", long_click: 4, key_back_color: bg_letter, width: 20}
+      - {click: l, label: " L ", long_click: 5, key_back_color: bg_letter, width: 20}
+      # 第二行
+      - {click: a, label: "A S", long_click: 6, key_back_color: bg_letter, width: 20}
+      - {click: e, label: "E T", long_click: 7, key_back_color: bg_letter, width: 20}
+      - {click: g, label: "G Y", long_click: 8, key_back_color: bg_letter, width: 20}
+      - {click: n, label: "N I", long_click: 9, key_back_color: bg_letter, width: 20}
+      - {click: o, label: "O H", long_click: 0, key_back_color: bg_letter, width: 20}
+      # 第三行
+      - {click: z, label: "Z X", key_back_color: bg_letter, width: 17.5}
+      - {click: c, label: "C V", key_back_color: bg_letter, width: 17.5}
+      - {click: b, label: "B P", key_back_color: bg_letter, width: 17.5}
+      - {click: m, label: " M ", key_back_color: bg_letter, width: 17.5}
+      - {click: Shift_L, composing: Escape, key_text_size: 13, width: 15}
+      - {click: BackSpace, swipe_up: Delete, key_back_color: bg_d_rr, key_text_size: 30, key_text_offset_y: -6, width: 15}
+      # 第四行
+      - {click: "zj_sz", long_click: zj_fh, has_menu: Page_Down, composing: "", swipe_up: q_xd, key_back_color: bg_d_rr, key_text_size: 13, width: 19} #方案选择
+      - {click: ",", label: "  ，", long_click: ";", key_text_size: 13, key_back_color: bg_d_rr, width: 13}
+      - {click: space, ascii: space1, long_click: Mode_switch, key_text_size: 13, swipe_left: Left, swipe_right: Right, key_back_color: bg_space, key_symbol_color: color_b, width: 36}
+      - {click: ".", label: "  。", key_text_size: 13, long_click: "!", key_back_color: bg_d_rr, width: 13}
+      - {click: Return, long_click: theme_settings, swipe_up: Color_settings, key_back_color: bg_o_rr, key_text_size: 13, width: 19}
+    name: "Double key"
+    width: 10
+
+
   #编辑
   layout_edit:
     height: *SZG
