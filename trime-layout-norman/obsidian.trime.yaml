@@ -60,7 +60,7 @@ style:
     min_length: 0 #候选窗口最小词长
     max_length: 99 #超过字数则换行
     sticky_lines: 0 #固顶行数
-    max_entries: 2 #候选窗口最大词条数
+    max_entries: 0 #候选窗口最大词条数
     all_phrases: false #所有满足条件的词语都显示在窗口
     border: 1 #候选窗口边框宽度
     max_width: 370 #最大宽度，超过则自动换行
@@ -255,8 +255,8 @@ preset_keyboards:
       - {click: b, long_click: zj_bj, swipe_up: Up, swipe_down: Down, swipe_left: Left, swipe_right: Right, key_back_color: bg_letter}
       - {click: p, long_click: '\', key_back_color: bg_letter}
       - {click: m, long_click: ':', key_back_color: bg_letter}
-      - {click: Shift_L, composing: Escape, key_text_size: 13, width: 15}
-      - {click: BackSpace, swipe_up: Delete, key_back_color: bg_d_rr, key_text_size: 30, key_text_offset_y: -6, width: 15}
+      - {click: Shift_L, composing: Escape, key_text_size: 13, width: 11}
+      - {click: BackSpace, swipe_up: Delete, key_back_color: bg_d_rr, key_text_size: 30, key_text_offset_y: -6, width: 19}
       # 第四行
       - {click: "zj_sz", long_click: zj_fh, has_menu: Page_Down, composing: "", swipe_up: q_xd, key_back_color: bg_d_rr, key_text_size: 13, width: 19} #方案选择
       - {click: ",", label: "  ，", long_click: ";", key_text_size: 13, key_back_color: bg_d_rr, width: 13}

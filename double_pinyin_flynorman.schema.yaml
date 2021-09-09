@@ -10,7 +10,7 @@ schema:
   description: |
     朙月拼音＋小鶴雙拼norman布局。
   dependencies:
-    - luna_pinyin
+    - pinyin_extended
 
 switches:
   - name: ascii_mode
@@ -90,7 +90,7 @@ speller:
     #- abbrev/^(.).+$/$1/
 
 translator:
-  dictionary: luna_pinyin
+  dictionary: pinyin_extended
   prism: double_pinyin_flynorman
   preedit_format:
     - xform/([bpmfdtnljqx])p/$1iao/
