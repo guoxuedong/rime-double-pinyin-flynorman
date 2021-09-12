@@ -44,10 +44,10 @@ style:
   candidate_spacing: 5 #候选间距
   candidate_text_size: 24 #候选字号
   candidate_use_cursor: true #高亮候选项
-  candidate_view_height: 24 #候选区高度
+  candidate_view_height: 32 #候选区高度
   color_scheme: default #配色方案
   comment_font: ziti.ttf #状态栏提示字型
-  comment_height: 10 #状态栏提示区高度
+  comment_height: 1 #状态栏提示区高度
   comment_on_top: true #状态栏提示在上方true, 右侧false
   comment_text_size: 6 #状态栏提示字号
   hanb_font: Ext.ttf #扩充字型
@@ -89,7 +89,7 @@ style:
   key_long_text_size: 15 #两字以上时键字号
   key_text_size: 21 #键字号
   key_width: 10.0 #键宽，占银幕宽的百分比
-  keyboards: [.default, default, defaultVJ, menu, layout_edit, qtsz, qtzb, punct_en, qtxh, punct_cn, qtjt] #声明
+  keyboards: [.default, default, letter, defaultVJ, menu, layout_edit, qtsz, qtzb, punct_en, qtxh, punct_cn, qtjt] #声明
   label_text_size: 14 #悬浮窗序号字号
   label_font: ziti.ttf #标签字型
   latin_font: latin.ttf #西文字型
@@ -248,6 +248,8 @@ preset_keyboards:
       - {click: o, long_click: "''{Left}", swipe_up: "''{Left}", key_back_color: bg_letter}
       - {click: h, long_click: '(){Left}', swipe_up: '(){Left}', key_back_color: bg_letter}
       # 第三行
+      - {click: Shift_L, composing: Escape, key_text_size: 13, width: 14}
+      - {width: 1}
       - {click: z, long_click: undo, key_back_color: bg_letter}
       - {click: x, long_click: cut, key_back_color: bg_letter}
       - {click: c, long_click: copy, key_back_color: bg_letter}
@@ -255,15 +257,26 @@ preset_keyboards:
       - {click: b, long_click: zj_bj, swipe_up: Up, swipe_down: Down, swipe_left: Left, swipe_right: Right, key_back_color: bg_letter}
       - {click: p, long_click: '\', swipe_up: '\', key_back_color: bg_letter}
       - {click: m, long_click: ':', swipe_up: ':', key_back_color: bg_letter}
-      - {click: Shift_L, composing: Escape, key_text_size: 13, width: 11}
-      - {click: BackSpace, swipe_up: Delete, key_back_color: bg_d_rr, key_text_size: 30, key_text_offset_y: -6, width: 19}
+      - {width: 1}
+      - {click: BackSpace, swipe_up: Delete, key_back_color: bg_d_rr, key_text_size: 30, key_text_offset_y: -6, width: 14}
       # 第四行
-      - {click: "zj_sz", long_click: zj_fh, has_menu: Page_Down, composing: "", swipe_up: q_xd, key_back_color: bg_d_rr, key_text_size: 13, width: 19} #方案选择
-      - {click: ",", label: "  ，", long_click: ';', swipe_up: ";", key_text_size: 13, key_back_color: bg_d_rr, width: 13}
-      - {click: space, ascii: space1, long_click: Mode_switch, key_text_size: 13, swipe_left: Left, swipe_right: Right, key_back_color: bg_space, key_symbol_color: color_b, width: 36}
-      - {click: ".", label: "  。", key_text_size: 13, long_click: '!', swipe_up: "!", key_back_color: bg_d_rr, width: 13}
-      - {click: Return, long_click: theme_settings, swipe_up: Color_settings, key_back_color: bg_o_rr, key_text_size: 13, width: 19}
+      - {click: zj_fh, has_menu: Page_Down, composing: "", swipe_up: q_xd, key_back_color: bg_d_rr, key_text_size: 13, width: 14}
+      - {click: zj_sz, has_menu: Page_Up, composing: "", swipe_up: q_xd, key_back_color: bg_d_rr, key_text_size: 13, width: 13}
+      - {click: ",", label: " ，", long_click: ';', swipe_up: ";", key_text_size: 13, key_back_color: bg_letter, width: 10}
+      - {click: space, ascii: space1, long_click: Mode_switch, key_text_size: 13, swipe_left: Left, swipe_right: Right, key_back_color: bg_space, key_symbol_color: color_b, width: 26}
+      - {click: ".", label: " 。", key_text_size: 13, long_click: '!', swipe_up: "!", key_back_color: bg_letter, width: 10}
+      - {click: keyboard_en, key_text_size: 13, key_back_color: bg_d_rr, width: 13}
+      - {click: Return, long_click: theme_settings, swipe_up: Color_settings, key_back_color: bg_o_rr, key_text_size: 13, width: 14}
     name: "Default"
+    width: 10
+
+  letter:
+    __include: /preset_keyboards/default
+    __patch:
+      "keys/@36/click": keyboard_cn
+    ascii_mode: 1
+    lock: false
+    name: "英语键盘"
     width: 10
 
   defaultVJ:
@@ -303,18 +316,22 @@ preset_keyboards:
       - {click: n, label: "N I", long_click: 9, swipe_up: 9, key_back_color: bg_letter, width: 20}
       - {click: o, label: "O H", long_click: 0, swipe_up: 0, key_back_color: bg_letter, width: 20}
       # 第三行
+      - {click: Shift_L, composing: Escape, key_text_size: 13, width: 14}
+      - {width: 1}
       - {click: z, label: "Z X", key_back_color: bg_letter, width: 17.5}
       - {click: c, label: "C V", key_back_color: bg_letter, width: 17.5}
       - {click: b, label: "B P", key_back_color: bg_letter, width: 17.5}
       - {click: m, label: " M ", key_back_color: bg_letter, width: 17.5}
-      - {click: Shift_L, composing: Escape, key_text_size: 13, width: 15}
-      - {click: BackSpace, swipe_up: Delete, key_back_color: bg_d_rr, key_text_size: 30, key_text_offset_y: -6, width: 15}
+      - {width: 1}
+      - {click: BackSpace, swipe_up: Delete, key_back_color: bg_d_rr, key_text_size: 30, key_text_offset_y: -6, width: 14}
       # 第四行
-      - {click: "zj_sz", long_click: zj_fh, has_menu: Page_Down, composing: "", swipe_up: q_xd, key_back_color: bg_d_rr, key_text_size: 13, width: 19} #方案选择
-      - {click: ",", label: "  ，", long_click: ";", swipe_up: ";", key_text_size: 13, key_back_color: bg_d_rr, width: 13}
-      - {click: space, ascii: space1, long_click: Mode_switch, key_text_size: 13, swipe_left: Left, swipe_right: Right, key_back_color: bg_space, key_symbol_color: color_b, width: 36}
-      - {click: ".", label: "  。", key_text_size: 13, long_click: "!", swipe_up: "!", key_back_color: bg_d_rr, width: 13}
-      - {click: Return, long_click: theme_settings, swipe_up: Color_settings, key_back_color: bg_o_rr, key_text_size: 13, width: 19}
+      - {click: zj_fh, has_menu: Page_Down, composing: "", swipe_up: q_xd, key_back_color: bg_d_rr, key_text_size: 13, width: 14}
+      - {click: zj_sz, has_menu: Page_Up, composing: "", swipe_up: q_xd, key_back_color: bg_d_rr, key_text_size: 13, width: 13}
+      - {click: ",", label: " ，", long_click: ';', swipe_up: ";", key_text_size: 13, key_back_color: bg_letter, width: 10}
+      - {click: space, ascii: space1, long_click: Mode_switch, key_text_size: 13, swipe_left: Left, swipe_right: Right, key_back_color: bg_space, key_symbol_color: color_b, width: 26}
+      - {click: ".", label: " 。", key_text_size: 13, long_click: '!', swipe_up: "!", key_back_color: bg_letter, width: 10}
+      - {click: keyboard_en, key_text_size: 13, key_back_color: bg_d_rr, width: 13}
+      - {click: Return, long_click: theme_settings, swipe_up: Color_settings, key_back_color: bg_o_rr, key_text_size: 13, width: 14}
     name: "Double key"
     width: 10
 
@@ -722,7 +739,10 @@ preset_keys:
   t_fho: {label: " ", send: Eisu_toggle, select: .default} #返回主键盘
   K_sx: {label: "3选", functional: false, text: "{Right}{Right}{space}"}
   t_jh: {label: ".", functional: false, commit: "."}
-  t_xdfh: {label: "暗夜 1.1.0", send: Eisu_toggle, select: .default}
+  t_xdfh: {label: "耀石 1.1.0", send: Eisu_toggle, select: .default}
+
+  keyboard_en: {label: "中", functional: false, send: Eisu_toggle, select: letter}
+  keyboard_cn: {label: "英", functional: false, send: Eisu_toggle, select: .default}
 
 # 编辑
 
@@ -841,4 +861,4 @@ preset_keys:
 
   M2T: {label: mt, functional: false, send: function, command: run, option: "bin.mt.plus"} #MT2app包名
   TV_bdhy: {label: 百词, functional: false, send: function, command: run, option: "https://hanyu.baidu.com/"}
-  #底部 尾部 末尾
+  #底部

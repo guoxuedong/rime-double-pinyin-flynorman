@@ -3,7 +3,7 @@
 
 schema:
   schema_id: double_key_flynorman
-  name: 小猿双拼双键
+  name: 小猿双键
   version: "0.1"
   author:
     - double pinyin layout by cedar
@@ -13,9 +13,11 @@ schema:
     - luna_pinyin
 
 switches:
+  - options: [ _keyboard_menu ]
+    states: [ "☼" ]
   - name: ascii_mode
     reset: 0
-    states: [ 中, 英 ]
+    #states: [ 中, 英 ]
   - name: simplification
     reset: 1
     #states: [ 繁, 简 ]
@@ -23,8 +25,6 @@ switches:
     states: [ "　　　　　　　　　　" ]
   - options: [ _key_Hide ]
     states: [ ﹀ ]
-#  - options: [ _keyboard_menu ]
-#    states: [ "M" ]
 #  - name: full_shape
 #    states: [ 半角, 全角 ]
 #  - name: ascii_punct

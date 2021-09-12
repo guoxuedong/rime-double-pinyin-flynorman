@@ -13,9 +13,11 @@ schema:
     - pinyin_extended
 
 switches:
+  - options: [ _keyboard_menu ]
+    states: [ "☼" ]
   - name: ascii_mode
     reset: 0
-    states: [ 中, 英 ]
+    #states: [ 中, 英 ]
   - name: simplification
     reset: 1
     #states: [ 繁, 简 ]
@@ -23,8 +25,6 @@ switches:
     states: [ "　　　　　　　　　　" ]
   - options: [ _key_Hide ]
     states: [ ﹀ ]
-#  - options: [ _keyboard_menu ]
-#    states: [ "M" ]
 #  - name: full_shape
 #    states: [ 半角, 全角 ]
 #  - name: ascii_punct
