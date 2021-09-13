@@ -14,7 +14,7 @@ schema:
 
 switches:
   - options: [ _keyboard_menu ]
-    states: [ "☼" ]
+    states: [ "⚙" ]
   - name: ascii_mode
     reset: 0
     #states: [ 中, 英 ]
@@ -279,6 +279,10 @@ translator:
 
 punctuator:
   import_preset: default
+  full_shape:
+    "\\": "、"
+  half_shape:
+    "\\": "、"
 
 key_binder:
   import_preset: default

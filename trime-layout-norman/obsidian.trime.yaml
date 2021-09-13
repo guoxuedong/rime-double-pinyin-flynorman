@@ -318,10 +318,10 @@ preset_keyboards:
       # 第三行
       - {click: Shift_L, composing: Escape, key_text_size: 13, width: 14}
       - {width: 1}
-      - {click: z, label: "Z X", key_back_color: bg_letter, width: 17.5}
-      - {click: c, label: "C V", key_back_color: bg_letter, width: 17.5}
-      - {click: b, label: "B P", key_back_color: bg_letter, width: 17.5}
-      - {click: m, label: " M ", key_back_color: bg_letter, width: 17.5}
+      - {click: z, label: "Z X", long_click: '~', swipe_up: '~', key_back_color: bg_letter, width: 17.5}
+      - {click: c, label: "C V", long_click: '@', swipe_up: '@', key_back_color: bg_letter, width: 17.5}
+      - {click: b, label: "B P", long_click: '\', swipe_up: '\', key_back_color: bg_letter, width: 17.5}
+      - {click: m, label: " M ", long_click: '?', swipe_up: '?', key_back_color: bg_letter, width: 17.5}
       - {width: 1}
       - {click: BackSpace, swipe_up: Delete, key_back_color: bg_d_rr, key_text_size: 30, key_text_offset_y: -6, width: 14}
       # 第四行
