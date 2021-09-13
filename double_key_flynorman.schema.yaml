@@ -91,7 +91,7 @@ speller:
     #- abbrev/^(.).+$/$1/
 
 translator:
-  dictionary: luna_pinyin
+  dictionary: pinyin_extended
   prism: double_key_flynorman
   preedit_format:
     - xform/qq/QIU|WEI/
