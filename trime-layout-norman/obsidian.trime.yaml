@@ -3,38 +3,11 @@ author: cedar
 
 # 默认:
 height:
-  A: &AAG 50  #字母行 高
-  B: &KGG 50  #空格行 高
-  a: &aaY 0  #圆角
-  b: &aaH 3   #行距
-  c: &aaL 0   #列距
-
-# 增高行:
-  1: &aaM 0.5 #主键
-  2: &szM 1.75 #数字 选单 编辑
-
-# 数字: 选单 编辑
-  A: &SZG 53  #键高
-  D: &szY 0   #圆角
-  B: &szH 0  #行距
-  C: &szL 0  #列距
-
-# 符号:
-  A: &FHG 42.5  #键高
-  A: &FHD 50  #底行
-  B: &fhY 0  #圆角
-  C: &fhH 0  #行距
-  D: &fhL 0  #竖距
-
-# 字符 偏移:
-  1: &symY 1.5  #上标 纵
-  2: &symX 0   #上标 横
-  3: &textY 0   #字符 纵
-  4: &ZJtextY 0   #助记 纵
-  5: &ZJhintY -1.5  #下标 纵
-  6: &FHsymY 1   #符号键盘
-  7: &XDtextY 0   #选单键盘
-  8: &XDhintY -6
+  1: &EXTRA_H 1.75 #数字 选单 编辑,增高行
+  2: &KEY_H 53  #键高
+  3: &CORNER 0   #圆角
+  4: &ROW_GAP 0  #行距
+  5: &COL_GAP 0  #列距
 
 style:
   auto_caps: false #自动句首大写:true|false|ascii
@@ -52,7 +25,7 @@ style:
   comment_text_size: 6 #状态栏提示字号
   hanb_font: Ext.ttf #扩充字型
   horizontal: true #水平模式  横true | 竖false
-  horizontal_gap: *fhL #符号键盘列间距
+  horizontal_gap: 0 #符号键盘列间距
 
   #悬浮窗口位置 跟随
   layout:
@@ -85,11 +58,11 @@ style:
     - {start: "", label: "", candidate: " %s ", comment: " %s", end: "  ", sep: "  "}  #换行：start: "\n" ，序号：label: "%s."
 
   key_font: ziti.ttf #键盘字型
-  key_height: *FHG #符号键盘键高
+  key_height: 42.5 #符号键盘键高
   key_long_text_size: 15 #两字以上时键字号
   key_text_size: 21 #键字号
   key_width: 10.0 #键宽，占银幕宽的百分比
-  keyboards: [.default, default, letter, defaultVJ, menu, layout_edit, qtsz, qtzb, punct_en, qtxh, punct_cn, qtjt] #声明
+  keyboards: [.default, default, letter, defaultVJ, menu, layout_edit, layout_number, qtzb, punct_en, punct_cn] #声明
   label_text_size: 14 #悬浮窗序号字号
   label_font: ziti.ttf #标签字型
   latin_font: latin.ttf #西文字型
@@ -101,7 +74,7 @@ style:
   preview_text_size: 36 #按键提示字号
   proximity_correction: true #无click时是否沿用相邻键功能，位于左右两端的即使否也会沿用
   reset_ascii_mode: false #不同进程中显示键盘时重置为中文状态（true:重置为中文；false:记忆中英状态）
-  round_corner: *fhY #符号键盘按键圆角半径
+  round_corner: 0 #符号键盘按键圆角半径
   shadow_radius: 0.0 #按键阴影半径
   speech_opencc_config: none #语音输入简繁转换
   symbol_font: ziti.ttf #符号字型
@@ -109,7 +82,7 @@ style:
   text_font: ziti.ttf #编码字型
   text_size: 16 #编码字号
   vertical_correction: -3 #按键纵向偏移，负数下移接触面
-  vertical_gap: *fhH #符号键盘行距
+  vertical_gap: 0 #符号键盘行距
 
 fallback_colors:
   keyboard_back_color: back_color  #键盘背景
@@ -153,23 +126,9 @@ fallback_colors:
 
 #颜色
 colors:
-  1: &蓝 0x007AFE
-  1: &蓝b 0xcc007AFE
-  2: &白 0xffffffff
-  3: &黑 0xff000000
-  4: &红 0xffff0000
-  5: &橙 0xffff7200
-  6: &黑b 0xff333333
-  7: &黑c 0xff888888 
-  8: &白b 0xffeeeeee
-  8: &白c 0xffdddddd
-  9: &灰 0xAAB1BB
-  9: &灰b 0xffe1e1e1
-  10: &QQ灰 0xFFF5F6FA 
-  a: &绿 0xFF82D0D2
-  b: &iOS 0xFFD1D4D9
-  0: &QQ 0xFFF5F6FA
-  0: &QQ2 0xFFEAEDF4 
+  1: &白 0xffffffff
+  2: &红 0xffff0000
+  3: &橙 0xffff7200
 
 #配色，
 preset_color_schemes:
@@ -211,16 +170,16 @@ preset_keyboards:
   default:
     ascii_mode: 0
     lock: true
-    height: *AAG
-    horizontal_gap: *aaL
-    vertical_gap: *aaH
-    round_corner: *aaY
-    key_text_offset_y: *textY
-    key_symbol_offset_y: *symY
+    height: 50
+    horizontal_gap: 0
+    vertical_gap: 3
+    round_corner: 0
+    key_text_offset_y: 0
+    key_symbol_offset_y: 1.5
     key_press_offset_x: 0
     key_press_offset_y: 3
-    key_symbol_offset_x: *symX
-    key_hint_offset_y: *ZJhintY
+    key_symbol_offset_x: 0
+    key_hint_offset_y: -1.5
     keyboard_back_color: Dback
     label_transform: uppercase #uppercase|none 中文模式下的字母标签自动大写
 
@@ -261,11 +220,11 @@ preset_keyboards:
       - {click: BackSpace, swipe_up: Delete, key_back_color: bg_d_rr, key_text_size: 30, key_text_offset_y: -6, width: 14}
       # 第四行
       - {click: zj_fh, has_menu: Page_Down, composing: "", swipe_up: q_xd, key_back_color: bg_d_rr, key_text_size: 13, width: 14}
-      - {click: zj_sz, has_menu: Page_Up, composing: "", swipe_up: q_xd, key_back_color: bg_d_rr, key_text_size: 13, width: 13}
-      - {click: ",", label: " ，", long_click: ';', swipe_up: ";", key_text_size: 13, key_back_color: bg_letter, width: 10}
-      - {click: space, ascii: space1, long_click: Mode_switch, key_text_size: 13, swipe_left: Left, swipe_right: Right, key_back_color: bg_space, key_symbol_color: color_b, width: 26}
-      - {click: ".", label: " 。", key_text_size: 13, long_click: '!', swipe_up: "!", key_back_color: bg_letter, width: 10}
-      - {click: keyboard_en, key_text_size: 13, key_back_color: bg_d_rr, width: 13}
+      - {click: zj_sz, has_menu: Page_Up, composing: "", swipe_up: q_xd, key_back_color: bg_d_rr, key_text_size: 13, width: 14}
+      - {click: ",", label: " ，", long_click: ';', swipe_up: ";", key_text_size: 13, key_back_color: bg_letter, width: 11}
+      - {click: space, ascii: space1, long_click: Mode_switch, key_text_size: 13, swipe_left: Left, swipe_right: Right, key_back_color: bg_space, key_symbol_color: color_b, width: 22}
+      - {click: ".", label: " 。", key_text_size: 13, long_click: '!', swipe_up: "!", key_back_color: bg_letter, width: 11}
+      - {click: keyboard_en, key_text_size: 13, key_back_color: bg_d_rr, width: 14}
       - {click: Return, long_click: theme_settings, swipe_up: Color_settings, key_back_color: bg_o_rr, key_text_size: 13, width: 14}
     name: "Default"
     width: 10
@@ -289,16 +248,16 @@ preset_keyboards:
   double_key_flynorman:
     ascii_mode: 0
     lock: true
-    height: *AAG
-    horizontal_gap: *aaL
-    vertical_gap: *aaH
-    round_corner: *aaY
-    key_text_offset_y: *textY
-    key_symbol_offset_y: *symY
+    height: 50
+    horizontal_gap: 0
+    vertical_gap: 3
+    round_corner: 0
+    key_text_offset_y: 0
+    key_symbol_offset_y: 1.5
     key_press_offset_x: 0
     key_press_offset_y: 3
-    key_symbol_offset_x: *symX
-    key_hint_offset_y: *ZJhintY
+    key_symbol_offset_x: 0
+    key_hint_offset_y: -1.5
     keyboard_back_color: Dback
     label_transform: uppercase #uppercase|none 中文模式下的字母标签自动大写
 
@@ -326,11 +285,11 @@ preset_keyboards:
       - {click: BackSpace, swipe_up: Delete, key_back_color: bg_d_rr, key_text_size: 30, key_text_offset_y: -6, width: 14}
       # 第四行
       - {click: zj_fh, has_menu: Page_Down, composing: "", swipe_up: q_xd, key_back_color: bg_d_rr, key_text_size: 13, width: 14}
-      - {click: zj_sz, has_menu: Page_Up, composing: "", swipe_up: q_xd, key_back_color: bg_d_rr, key_text_size: 13, width: 13}
-      - {click: ",", label: " ，", long_click: ';', swipe_up: ";", key_text_size: 13, key_back_color: bg_letter, width: 10}
-      - {click: space, ascii: space1, long_click: Mode_switch, key_text_size: 13, swipe_left: Left, swipe_right: Right, key_back_color: bg_space, key_symbol_color: color_b, width: 26}
-      - {click: ".", label: " 。", key_text_size: 13, long_click: '!', swipe_up: "!", key_back_color: bg_letter, width: 10}
-      - {click: keyboard_en, key_text_size: 13, key_back_color: bg_d_rr, width: 13}
+      - {click: zj_sz, has_menu: Page_Up, composing: "", swipe_up: q_xd, key_back_color: bg_d_rr, key_text_size: 13, width: 14}
+      - {click: ",", label: " ，", long_click: ';', swipe_up: ";", key_text_size: 13, key_back_color: bg_letter, width: 11}
+      - {click: space, ascii: space1, long_click: Mode_switch, key_text_size: 13, swipe_left: Left, swipe_right: Right, key_back_color: bg_space, key_symbol_color: color_b, width: 22}
+      - {click: ".", label: " 。", key_text_size: 13, long_click: '!', swipe_up: "!", key_back_color: bg_letter, width: 11}
+      - {click: keyboard_en, key_text_size: 13, key_back_color: bg_d_rr, width: 14}
       - {click: Return, long_click: theme_settings, swipe_up: Color_settings, key_back_color: bg_o_rr, key_text_size: 13, width: 14}
     name: "Double key"
     width: 10
@@ -338,11 +297,11 @@ preset_keyboards:
 
   #编辑
   layout_edit:
-    height: *SZG
-    horizontal_gap: *szL
-    vertical_gap: *szH
-    round_corner: *szY
-    key_text_offset_y: *textY
+    height: *KEY_H
+    horizontal_gap: *COL_GAP
+    vertical_gap: *ROW_GAP
+    round_corner: *CORNER
+    key_text_offset_y: 0
     keys:
       # ❶
       - {click: undo, key_text_size: 13}
@@ -369,17 +328,17 @@ preset_keyboards:
       - {click: "paste", key_text_size: 13}
       - {click: "Return", key_text_size: 13, key_back_color: bg_d_r, width: 20}
       # 增高行
-      - {height: *szM, width: 100}
+      - {height: *EXTRA_H, width: 100}
     name: "编辑。"
     width: 20
 
   #选单
   menu:
-    height: *SZG 
-    horizontal_gap: *szL
-    vertical_gap: *szH
-    round_corner: *szY
-    key_text_offset_y: *textY
+    height: *KEY_H 
+    horizontal_gap: *COL_GAP
+    vertical_gap: *ROW_GAP
+    round_corner: *CORNER
+    key_text_offset_y: 0
     keys:
       # 第一行
       - {click: "", key_back_color: 0x00, width: 10}
@@ -391,7 +350,7 @@ preset_keyboards:
       - {click: "", key_back_color: 0x00, width: 10}
       # 第二行
       - {click: "", key_back_color: 0x00, width: 10}
-      - {click: "t_fh2", label: Ⓜ, hint: 默　认, key_text_size: 16, key_back_color: 0x00, key_symbol_color: candidate_text_color}
+      - {click: "return_symble", label: Ⓜ, hint: 默　认, key_text_size: 16, key_back_color: 0x00, key_symbol_color: candidate_text_color}
       - {click: "q_zhuji", hint: 助　记, key_text_size: 16, key_back_color: 0x00, key_symbol_color: candidate_text_color}
       - {click: "Full_Half1", hint: 全半角, key_text_size: 16, key_back_color: 0x00, key_symbol_color: candidate_text_color}
       - {click: "Candidate_switch", hint: 候选栏, key_text_size: 18, key_back_color: 0x00, key_symbol_color: candidate_text_color}
@@ -408,54 +367,54 @@ preset_keyboards:
       # 第四行
       - {click: "t_xdfh", key_back_color: 0x00, key_text_color: key_symbol_color, key_text_size: 12, width: 100}
       # 增高行
-      - {height: *szM, width: 100}
+      - {height: *EXTRA_H, width: 100}
     name: "选单。"
     width: 16
 
   #数字
-  qtsz:
-    height: *SZG
-    horizontal_gap: *szL
-    vertical_gap: *szH
-    round_corner: *szY
-    key_text_offset_y: *textY
+  layout_number:
+    height: *KEY_H
+    horizontal_gap: *COL_GAP
+    vertical_gap: *ROW_GAP
+    round_corner: *CORNER
+    key_text_offset_y: 0
     keys:
       # 第一行
-      - {click: "+", key_text_size: 16, key_back_color: bg_d_r, hilited_key_back_color: AAH}
+      - {click: '.', key_text_size: 16, key_back_color: bg_d_r, hilited_key_back_color: AAH, width: 14}
       - {click: 1, key_back_color: bg_g_r}
       - {click: 2, key_back_color: bg_g_r}
       - {click: 3, key_back_color: bg_g_r}
-      - {click: "×", key_back_color: bg_d_r, hilited_key_back_color: AAH}
+      - {click: "BackSpace", swipe_up: DelH, key_text_size: 30, key_text_offset_y: -5, key_back_color: bg_d_r, width: 14}
       # 第二行
-      - {click: "-", key_back_color: bg_d_r, hilited_key_back_color: AAH}
+      - {click: "+", key_back_color: bg_d_r, hilited_key_back_color: AAH, width: 14}
       - {click: 4, key_back_color: bg_g_r}
       - {click: 5, key_back_color: bg_g_r}
       - {click: 6, key_back_color: bg_g_r}
-      - {click: "÷", key_text_size: 19, key_back_color: bg_d_r, hilited_key_back_color: AAH}
+      - {click: "*", key_text_size: 16, key_back_color: bg_d_r, hilited_key_back_color: AAH, width: 14}
       # 第三行
-      - {click: "zj_fh", key_text_size: 13, key_back_color: bg_d_r, hilited_key_back_color: AAH}
+      - {click: '-', key_text_size: 16, key_back_color: bg_d_r, hilited_key_back_color: AAH, width: 14}
       - {click: 7, key_back_color: bg_g_r}
       - {click: 8, key_back_color: bg_g_r}
       - {click: 9, key_back_color: bg_g_r}
-      - {click: "BackSpace", swipe_up: DelH, key_text_size: 30, key_text_offset_y: -5, key_back_color: bg_d_r}
+      - {click: '#', key_text_size: 16, key_back_color: bg_d_r, hilited_key_back_color: AAH, width: 14}
       # 第四行
-      - {click: "K_back1", key_text_size: 13, key_back_color: bg_d_r, hilited_key_back_color: AAH}
-      - {click: "=", key_back_color: bg_d_r, hilited_key_back_color: AAH}
+      - {click: "zj_fh", key_text_size: 13, key_back_color: bg_d_r, hilited_key_back_color: AAH, width: 14}
+      - {click: "K_back1", key_back_color: bg_d_r, hilited_key_back_color: AAH}
       - {click: 0, key_back_color: bg_g_r}
-      - {click: ".", key_text_size: 19, key_back_color: bg_d_r, hilited_key_back_color: AAH}
-      - {click: "Return", key_text_size: 13, key_back_color: bg_o_r, hilited_key_back_color: AAH}
+      - {click: "=", key_text_size: 19, key_back_color: bg_d_r, hilited_key_back_color: AAH}
+      - {click: "Return", key_text_size: 13, key_back_color: bg_o_r, hilited_key_back_color: AAH, width: 14}
       # 增高行
-      - {height: *szM, width: 100}
+      - {height: *EXTRA_H, width: 100}
     name: "Number"
-    width: 20
+    width: 24
 
   punct_en:
     ascii_mode: 1
-    height: *SZG
-    horizontal_gap: *szL
-    vertical_gap: *szH
-    round_corner: *szY
-    key_text_offset_y: *textY
+    height: *KEY_H
+    horizontal_gap: *COL_GAP
+    vertical_gap: *ROW_GAP
+    round_corner: *CORNER
+    key_text_offset_y: 0
     keys:
       # ❶
       - {click: "fh_yb", key_back_color: bg_o_r, width: 14}
@@ -465,7 +424,6 @@ preset_keyboards:
       - {click: "!", key_text_size: 15}
       - {click: ":", key_text_size: 15}
       - {click: ";", key_text_size: 15}
-      - {click: "fh_xh", key_back_color: bg_d_r, width: 14}
       # ❷
       - {click: "fh_zb", key_back_color: bg_d_r, width: 14}
       - {click: "`", key_text_size: 15}
@@ -474,37 +432,34 @@ preset_keyboards:
       - {click: "~", key_text_size: 15}
       - {click: "^", key_text_size: 15}
       - {click: "_", key_text_size: 15}
-      - {click: "fh_jt", key_back_color: bg_d_r, width: 14}
       # ❸
-      - {click: "zj_sz", key_back_color: bg_d_r, width: 14}
+      - {click: "BackSpace", swipe_up: DelH, key_text_size: 33, key_text_offset_y: -5, key_back_color: bg_d_r, width: 14}
       - {click: "*", key_text_size: 15}
       - {click: "/", key_text_size: 15}
       - {click: "\\", key_text_size: 15}
       - {click: "$", key_text_size: 15}
       - {click: "&", key_text_size: 15}
       - {click: "|", key_text_size: 15}
-      - {click: "BackSpace", swipe_up: DelH, key_text_size: 33, key_text_offset_y: -5, key_back_color: bg_d_r, width: 14}
       # ❹
-      - {click: "t_fh", key_back_color: bg_d_r, width: 14}
+      - {click: "return", key_back_color: bg_d_r, width: 14}
       - {click: '""{Left}', key_text_size: 15}
       - {click: "''{Left}", key_text_size: 15}
       - {click: "(){Left}", key_text_size: 15}
       - {click: "[]{Left}", key_text_size: 15}
       - {click: "<>{Left}", key_text_size: 15}
       - {click: "{}{Left}", key_text_size: 15}
-      - {click: "Return", key_back_color: bg_o_r, width: 14}
       # 第六行
-      - {height: *szM, width: 100}
+      - {height: *EXTRA_H, width: 100}
     name: "punctuation en"
-    width: 12
+    width: 14.33
 
   punct_cn:
     ascii_mode: 0
-    height: *SZG
-    horizontal_gap: *szL
-    vertical_gap: *szH
-    round_corner: *szY
-    key_text_offset_y: *textY
+    height: *KEY_H
+    horizontal_gap: *COL_GAP
+    vertical_gap: *ROW_GAP
+    round_corner: *CORNER
+    key_text_offset_y: 0
     keys:
       # ❶
       - {click: "fh_yb", key_back_color: bg_d_r, width: 14}
@@ -514,7 +469,6 @@ preset_keyboards:
       - {click: "！", key_text_size: 15}
       - {click: "：", key_text_size: 15}
       - {click: "；", key_text_size: 15}
-      - {click: "fh_xh", key_back_color: bg_d_r, width: 14}
       # ❷
       - {click: "fh_zb", key_back_color: bg_o_r, width: 14}
       - {click: "｀", key_text_size: 15}
@@ -523,115 +477,26 @@ preset_keyboards:
       - {click: "～", key_text_size: 15}
       - {click: "……", key_text_size: 15}
       - {click: "@", key_text_size: 15}
-      - {click: "fh_jt", key_back_color: bg_d_r, width: 14}
       # ❸
-      - {click: "zj_sz", key_back_color: bg_d_r, width: 14}
+      - {click: "BackSpace", swipe_up: DelH, key_text_size: 33, key_text_offset_y: -5, key_back_color: bg_d_r, width: 14}
       - {click: "ˇ", key_text_size: 15}
       - {click: "¨", key_text_size: 15}
       - {click: "ˉ", key_text_size: 15}
       - {click: "—", key_text_size: 15}
       - {click: "＿", key_text_size: 15}
       - {click: "￥", key_text_size: 15}
-      - {click: "BackSpace", swipe_up: DelH, key_text_size: 33, key_text_offset_y: -5, key_back_color: bg_d_r, width: 14}
       # ❹
-      - {click: "t_fh", key_back_color: bg_d_r, width: 14}
+      - {click: "return", key_back_color: bg_d_r, width: 14}
       - {click: "“”{Left}", key_text_size: 15}
       - {click: "‘’{Left}", key_text_size: 15}
       - {click: "（）{Left}", key_text_size: 15}
       - {click: "［］{Left}", key_text_size: 15}
       - {click: '《》{Left}', key_text_size: 15}
       - {click: "【】{Left}", key_text_size: 15}
-      - {click: "Return", key_back_color: bg_o_r, width: 14}
       # 第六行
-      - {height: *szM, width: 100}
+      - {height: *EXTRA_H, width: 100}
     name: "punctuation cn"
-    width: 12
-
-  qtxh:
-    ascii_mode: 0
-    height: *SZG
-    horizontal_gap: *szL
-    vertical_gap: *szH
-    round_corner: *szY
-    key_text_offset_y: *textY
-    keys:
-      # ❶
-      - {click: "fh_yb", key_back_color: bg_d_r, width: 14}
-      - {click: "❶"}
-      - {click: "❷"}
-      - {click: "❸"}
-      - {click: "❹"}
-      - {click: "❺"}
-      - {click: "fh_xh", key_back_color: bg_o_r, width: 14}
-      # ❷
-      - {click: "fh_zb", key_back_color: bg_d_r, width: 14}
-      - {click: "❻"}
-      - {click: "❼"}
-      - {click: "❽"}
-      - {click: "❾"}
-      - {click: "❿"}
-      - {click: "fh_jt", key_back_color: bg_d_r, width: 14}
-      # ❸
-      - {click: "zj_sz", key_back_color: bg_d_r, width: 14}
-      - {click: "①"}
-      - {click: "②"}
-      - {click: "③"}
-      - {click: "④"}
-      - {click: "⑤"}
-      - {click: "BackSpace", swipe_up: DelH, key_text_size: 33, key_text_offset_y: -5, key_back_color: bg_d_r, width: 14}
-      # ❹
-      - {click: "t_fh", key_back_color: bg_d_r, width: 14}
-      - {click: "⑥"}
-      - {click: "⑦"}
-      - {click: "⑧"}
-      - {click: "⑨"}
-      - {click: "⑩"}
-      - {click: "Return", key_back_color: bg_o_r, width: 14}
-      # 第六行
-      - {height: *szM, width: 100}
-    name: "序号。"
-    width: 14.4
-
-  qtjt:
-    ascii_mode: 0
-    height: *SZG
-    horizontal_gap: *szL
-    vertical_gap: *szH
-    round_corner: *szY
-    key_text_offset_y: *textY
-    keys:
-      # ❶
-      - {click: "fh_yb", key_back_color: bg_d_r, width: 14}
-      - {click: "️↑️️"}
-      - {click: "↓️️️"}
-      - {click: "←️️"}
-      - {click: "→️️"}
-      - {click: "fh_xh", key_back_color: bg_d_r, width: 14}
-      # ❷
-      - {click: "fh_zb", key_back_color: bg_d_r, width: 14}
-      - {click: ️⇧, key_text_size: 19}
-      - {click: ️⇩️, key_text_size: 19}
-      - {click: ⇦}
-      - {click: ⇨}
-      - {click: "fh_jt", key_back_color: bg_o_r, width: 14}
-      # ❸
-      - {click: "zj_sz", key_back_color: bg_d_r, width: 14}
-      - {click: "↻"}
-      - {click: "↺"}
-      - {click: ↩}
-      - {click: "※"}
-      - {click: "BackSpace", swipe_up: DelH, key_text_size: 33, key_text_offset_y: -5, key_back_color: bg_d_r, width: 14}
-      # ❹
-      - {click: "t_fh", key_back_color: bg_d_r, width: 14}
-      - {click: "✺"}
-      - {click: "❃"}
-      - {click: "☆️"}
-      - {click: "✯️"}
-      - {click: "Return", key_back_color: bg_o_r, width: 14}
-      # 第六行
-      - {height: *szM, width: 100}
-    name: "箭头。"
-    width: 18
+    width: 14.33
 
 android_keys:
   name: [VoidSymbol, SOFT_LEFT, SOFT_RIGHT, HOME, BACK, CALL, ENDCALL,
@@ -718,13 +583,9 @@ preset_keys:
   #安卓  预设  t_ 按键
   #主键盘——
   zj_fh: {label: "符号", send: Eisu_toggle, select: "punct_en"}
-  zj_sz: {label: "123", send: Eisu_toggle, select: "qtsz"}
+  zj_sz: {label: "123", send: Eisu_toggle, select: "layout_number"}
   zj_bj: {label: "编辑", send: Eisu_toggle, select: "layout_edit"}
   theme_settings: {label: 主题, send: SETTINGS, option: "theme"} #主题
-
-  # 符号——
-  fh_jt: {label: "箭头", send: Eisu_toggle, select: "qtjt"}
-  fh_xh: {label: "序号", send: Eisu_toggle, select: "qtxh"}
 
   fh_yb: {label: "英标", send: Eisu_toggle, select: "punct_en"}
   fh_zb: {label: "中标", send: Eisu_toggle, select: "punct_cn"}
@@ -734,8 +595,8 @@ preset_keys:
   q_sx: {label: "⇋️", functional: false, text: "{Schema_switch}{Schema_switch}"}  #刷新
   q_zhuji: {label: Ⓙ, functional: false, send: Eisu_toggle, select: "defaultVJ"}
 
-  t_fh: {label: 返回, functional: false, send: Eisu_toggle, select: .default} #返回主键盘
-  t_fh2: {label: Ⓜ, functional: false, send: Eisu_toggle, select: .default} #选单默认
+  return: {label: 返回, functional: false, send: Eisu_toggle, select: .default} #返回主键盘
+  return_symble: {label: Ⓜ, functional: false, send: Eisu_toggle, select: .default} #选单默认
   t_fho: {label: " ", send: Eisu_toggle, select: .default} #返回主键盘
   K_sx: {label: "3选", functional: false, text: "{Right}{Right}{space}"}
   t_jh: {label: ".", functional: false, commit: "."}
