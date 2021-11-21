@@ -197,10 +197,10 @@ preset_keyboards:
       - {click: "?", long_click: 0, swipe_up: 0, key_back_color: bg_letter}
       # 第二行
       - {click: a, long_click: select_all, key_back_color: bg_letter}
-      - {click: s, long_click: ^, swipe_up: ^, key_back_color: bg_letter}
-      - {click: e, long_click: '~', swipe_up: '~', key_back_color: bg_letter}
-      - {click: t, long_click: _, swipe_up: _, key_back_color: bg_letter}
-      - {click: g, long_click: '@', swipe_up: '@', key_back_color: bg_letter}
+      - {click: s, long_click: '~', swipe_up: '~', key_back_color: bg_letter}
+      - {click: e, long_click: '@', swipe_up: '@', key_back_color: bg_letter}
+      - {click: t, long_click: '-', swipe_up: '-', key_back_color: bg_letter}
+      - {click: g, long_click: '_', swipe_up: '_', key_back_color: bg_letter}
       - {click: y, long_click: '#', swipe_up: '#', key_back_color: bg_letter}
       - {click: n, long_click: '$', swipe_up: '$', key_back_color: bg_letter}
       - {click: i, long_click: '""{Left}', swipe_up: '""{Left}', key_back_color: bg_letter}
@@ -411,20 +411,20 @@ preset_keyboards:
     keys:
       # ❶
       - {click: "fh_yb", key_back_color: bg_o_r, width: 14}
-      - {click: ",", key_text_size: 15}
-      - {click: ".", key_text_size: 15}
+      - {click: "~", key_text_size: 15}
+      - {click: "@", key_text_size: 15}
       - {click: "?", key_text_size: 15}
+      - {click: "-", key_text_size: 15}
+      - {click: "_", key_text_size: 15}
       - {click: "!", key_text_size: 15}
-      - {click: ":", key_text_size: 15}
-      - {click: ";", key_text_size: 15}
       # ❷
       - {click: "fh_zb", key_back_color: bg_d_r, width: 14}
       - {click: "`", key_text_size: 15}
       - {click: "%", key_text_size: 15}
       - {click: "#", key_text_size: 15}
-      - {click: "~", key_text_size: 15}
       - {click: "^", key_text_size: 15}
-      - {click: "_", key_text_size: 15}
+      - {click: ":", key_text_size: 15}
+      - {click: ";", key_text_size: 15}
       # ❸
       - {click: "BackSpace", swipe_up: DelH, key_text_size: 33, key_text_offset_y: -5, key_back_color: bg_d_r, width: 14}
       - {click: "*", key_text_size: 15}
