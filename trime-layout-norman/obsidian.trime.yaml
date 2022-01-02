@@ -213,7 +213,7 @@ preset_keyboards:
       - {click: x, long_click: cut, key_back_color: bg_letter}
       - {click: c, long_click: copy, key_back_color: bg_letter}
       - {click: v, long_click: paste, key_back_color: bg_letter}
-      - {click: b, long_click: zj_bj, swipe_up: Up, swipe_down: Down, swipe_left: Left, swipe_right: Right, key_back_color: bg_letter}
+      - {click: b, long_click: zj_bj, key_back_color: bg_letter}
       - {click: p, long_click: '\', swipe_up: '\', key_back_color: bg_letter}
       - {click: m, long_click: ':', swipe_up: ':', key_back_color: bg_letter}
       - {width: 1}
