@@ -1,0 +1,9 @@
+patch:
+  schema_list:
+    - schema: double_pinyin_flypy
+    - schema: luna_pinyin
+  switcher:
+    hotkeys:
+      - Control+grave
+  menu:
+    page_size: 9
