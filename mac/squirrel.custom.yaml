@@ -1,2 +1,3 @@
 patch:
   style/horizontal: true 
+  app_options/com.jetbrains.intellij.ce/ascii_mode: true
