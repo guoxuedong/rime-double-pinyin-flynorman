@@ -15,6 +15,9 @@ rime-dependency(对新版rime可能无效了)
 trime-layout-norman
   - trime输入法norman键盘布局
 
+# 基于雾凇拼音修改
+git@github.com:guoxuedong/rime-ice.git
+
 
 # ~/Library/Rime 下是用户级别的配置文件，下边的文件都直接放在这个路径下就可以了
 git clone git@github.com:rime/plum.git
