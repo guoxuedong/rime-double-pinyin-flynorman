@@ -36,8 +36,8 @@ style:
 
   auto_caps: false #自动句首大写:true|false|ascii
   color_scheme: dark #配色方案
-  keyboards: [.default, double_pinyin_flypy, keyboard_number, keyboard_punct_en, keyboard_punct_cn] #声明
-  reset_ascii_mode: false #不同进程中显示键盘时重置为中文状态（true:重置为中文；false:记忆中英状态）
+  keyboards: [.default, double_pinyin_flypy, number, symbols, symbols_cn] #声明
+  reset_ascii_mode: true    #显示键盘时重置为状态（true:重置；false:不重置状态）
   horizontal: true #水平模式  横true | 竖false
 
   horizontal_gap: 3          #符号键盘列间距
@@ -62,19 +62,19 @@ style:
     max_entries: 1 #候选窗口最大词条数
     all_phrases: false #所有满足条件的词语都显示在窗口
     border: 1 #候选窗口边框宽度
-    max_width: 370 #最大宽度，超过则自动换行
+    max_width: 395 #最大宽度，超过则自动换行
     max_height: 10 #最大高度
     min_width: 0 #最小宽度
     min_height: 0 #最小高度
-    margin_x: 6 #水平边距
+    margin_x: 5 #水平边距
     margin_y: 0 #竖直边距
     line_spacing: 0 #候选词的行间距(px)
     line_spacing_multiplier: 1 #候选词的行间距(倍数)
     spacing: 1 #悬浮窗偏移量
     round_corner: 0 #候选窗口圆角
-    alpha: 255 #透明度(0-255)
-    elevation: 2 #阴影(>=Android5.0)
-    movable: false #是否可移动窗口，或仅移动一次 true|false|once
+    alpha: 0xAA     #透明度(0-255)
+    elevation: 2    #阴影(>=Android5.0)
+    movable: false  #是否可移动窗口，或仅移动一次 true|false|once
 
   #悬浮窗组件
   window:
@@ -101,6 +101,8 @@ fallback_colors:
   comment_text_color: candidate_text_color #EN次选编码提示
   hilited_candidate_text_color: comment_text_color #hilited_text_color #首选文字
   hilited_comment_text_color: candidate_text_color #comment_text_color #首选编码提示
+  #root_background: back_color # 整个键盘区+候选栏的背景图/色,这个参数导致键盘背景与按键背景不容易区分
+  #candidate_background: back_color #候选栏的整体背景图/色
   #普通键
   key_back_color: back_color #符号键盘按键背景
   hilited_key_back_color: hilited_candidate_back_color #高亮按键背景
@@ -120,43 +122,44 @@ fallback_colors:
   off_key_text_color: key_text_color #功能键及shift键文本，如shift使用背景图标，可另定SHt为透明色
   hilited_off_key_text_color: off_key_text_color #hilited_key_text_color #功能键及shift键高亮文本
 
-params:
+custom_params:
   1: &color_none 0x00
   2: &color_white 0xFFFFFFFF
   3: &color_black 0xCC34393F
   4: &color_yellow 0xFFFFED87
-  5: &color_orange 0xE56D4B
-  6: &color_red 0xE54141
-  7: &color_gray 0x6B6D74
-  8: &color_gray_dark 0x42464F
-  9: &edge_key_width 15.5
+  5: &color_yellow_dark 0x859900
+  6: &color_orange 0xE56D4B
+  7: &color_red 0xE54141
+  8: &color_gray 0x6B6D74
+  9: &color_gray_dark 0x42464F
+  10: &edge_key_width 15.5
 
 #配色，aRGB
 preset_color_schemes:
   dark:
     name: "dark"
-    key_bg_gray_dark: *color_gray_dark
-    key_bg_orange: *color_orange
 
     # 悬浮窗（编码区）
-    border_color: *color_black         #悬浮窗边框
-    text_color: *color_yellow           # 悬浮窗字色,即输入拼音时最上边的字母
-    text_back_color: *color_black      #悬浮窗背景
+    border_color: *color_black         # 悬浮窗边框
+    hilited_text_color: *color_yellow  # 悬浮窗有效拼音字色
+    text_color: *color_yellow_dark     # 悬浮窗无效拼音字色
+    text_back_color: *color_black      # 悬浮窗背景
 
     # 候选区
-    back_color: *color_black                      #状态栏 分割 键盘主背景
-    candidate_text_color: *color_white            # 普通候选字色
-    comment_text_color: *color_yellow             # 普通候选项注释字色
+    back_color: *color_black                      # 老的候选区背景，无效了，这里作为变量来用
+    candidate_background: *color_black            # 候选栏的整体背景图/色
     hilited_candidate_text_color: *color_white    # 第一个候选项字色
-    hilited_comment_text_color: *color_white      # 第一个候选项注释字色
     hilited_candidate_back_color: *color_red      # 第一个候选项背景
+    candidate_text_color: *color_white            # 普通候选字色
+    hilited_comment_text_color: *color_white      # 第一个候选项注释字色
+    comment_text_color: *color_yellow             # 普通候选项注释字色
 
     # 键盘
     key_text_color: *color_white        # 默认字色
     key_symbol_color: *color_yellow     # 上标字色, long_click/hint
     key_back_color: *color_gray         # 按键背景
     hilited_key_back_color: *color_none # 按下按键时背景
-    keyboard_back_color: *color_black  # 键盘背景
+    keyboard_back_color: *color_black   # 键盘背景
 
     # shift
     off_key_back_color: *color_gray_dark         #shift 背景
@@ -170,6 +173,7 @@ preset_keyboards:
   double_pinyin_flypy:
     author: gxd
     ascii_mode: 0
+    reset_ascii_mode: true
     lock: true                    # 切换程序时记忆键盘
     label_transform: uppercase    #uppercase|none 中文模式下的字母标签自动大写
     height: 50
@@ -214,15 +218,21 @@ preset_keyboards:
       - {click: b, long_click: '""{Left}'}
       - {click: p, long_click: "''{Left}"}
       - {click: m, long_click: '(){Left}'}
-      - {click: backSpace, swipe_up: delete, key_back_color: key_bg_gray_dark, key_text_size: 30, key_text_offset_y: -6, width: 15}
+      - {click: backSpace, swipe_up: delete, key_back_color: *color_gray_dark, key_text_size: 30, key_text_offset_y: -6, width: 15}
       # 第四行
-      - {click: switch_punct, has_menu: page_down, composing: "", key_back_color: key_bg_gray_dark, key_text_size: 13, width: 15}
-      - {click: switch_number, has_menu: page_up, composing: "", key_back_color: key_bg_gray_dark, key_text_size: 13, width: 13}
+      - {click: switch_punct, has_menu: page_down, composing: "", key_back_color: *color_gray_dark, key_text_size: 13, width: 15}
+      - {click: switch_number, has_menu: page_up, composing: "", key_back_color: *color_gray_dark, key_text_size: 13, width: 13}
       - {click: ",", label: " ，", long_click: '<', key_text_size: 13, width: 11}
       - {click: space, ascii: space_symbol, key_text_size: 13, key_symbol_color: *color_none, width: 22}
       - {click: ".", label: " 。", key_text_size: 13, long_click: '>', width: 11}
-      - {click: mode_switch, key_text_size: 13, key_back_color: key_bg_gray_dark, width: 13}
-      - {click: return, long_click: hide, key_back_color: key_bg_orange, key_text_size: 13, width: 15}
+      - {click: mode_switch, key_text_size: 13, key_back_color: *color_gray_dark, width: 13}
+      - {click: return, long_click: hide, key_back_color: *color_orange, key_text_size: 13, width: 15}
+
+  # 英文键盘，没有直接用，防止其它程序调用英文键盘出错
+  letter:
+    __include: /preset_keyboards/double_pinyin_flypy
+    ascii_mode: 1
+    lock: false
 
   keyboard_config:
     height: 50  #键高
@@ -230,98 +240,100 @@ preset_keyboards:
     key_text_offset_y: 0
 
   #数字
-  keyboard_number:
+  number:
     __include: /preset_keyboards/keyboard_config
     key_symbol_offset_y: 1.5
     width: 23
     keys:
       # 第一行
-      - {click: '.', key_text_size: 16, key_back_color: key_bg_gray_dark, width: *edge_key_width}
+      - {click: '.', key_text_size: 16, key_back_color: *color_gray_dark, width: *edge_key_width}
       - {click: 1}
       - {click: 2}
       - {click: 3}
-      - {click: "backSpace", long_click: del_line, key_text_size: 30, key_text_offset_y: -5, key_back_color: key_bg_gray_dark, width: *edge_key_width}
+      - {click: "backSpace", long_click: del_line, key_text_size: 30, key_text_offset_y: -5, key_back_color: *color_gray_dark, width: *edge_key_width}
       # 第二行
-      - {click: "+", key_back_color: key_bg_gray_dark, width: *edge_key_width}
+      - {click: "+", key_back_color: *color_gray_dark, width: *edge_key_width}
       - {click: 4}
       - {click: 5}
       - {click: 6}
-      - {click: "*", key_text_size: 16, key_back_color: key_bg_gray_dark, width: *edge_key_width}
+      - {click: "*", key_text_size: 16, key_back_color: *color_gray_dark, width: *edge_key_width}
       # 第三行
-      - {click: '-', key_text_size: 16, key_back_color: key_bg_gray_dark, width: *edge_key_width}
+      - {click: '-', key_text_size: 16, key_back_color: *color_gray_dark, width: *edge_key_width}
       - {click: 7}
       - {click: 8}
       - {click: 9}
-      - {click: '/', key_text_size: 16, key_back_color: key_bg_gray_dark, width: *edge_key_width}
+      - {click: '/', key_text_size: 16, key_back_color: *color_gray_dark, width: *edge_key_width}
       # 第四行
-      - {click: "go_back", key_text_size: 13, key_back_color: key_bg_gray_dark, width: *edge_key_width}
-      - {click: "space_symbol", key_text_size: 25, key_text_offset_y: -10, key_back_color: key_bg_gray_dark}
+      - {click: "go_back", key_text_size: 13, key_back_color: *color_gray_dark, width: *edge_key_width}
+      - {click: "space_symbol", key_text_size: 25, key_text_offset_y: -10, key_back_color: *color_gray_dark}
       - {click: 0}
-      - {click: "=", key_text_size: 19, key_back_color: key_bg_gray_dark}
-      - {click: "return", key_text_size: 13, key_back_color: key_bg_orange, width: *edge_key_width}
+      - {click: "=", key_text_size: 19, key_back_color: *color_gray_dark}
+      - {click: "return", key_text_size: 13, key_back_color: *color_orange, width: *edge_key_width}
 
-  keyboard_punct_en:
+  symbols:
     __include: /preset_keyboards/keyboard_config
     ascii_mode: 1
+    reset_ascii_mode: true
     width: 17
     keys:
       # ❶
-      - {click: "switch_punct_en", key_text_size: 13, key_back_color: key_bg_orange, width: 15}
+      - {click: "switch_punct_en", key_text_size: 13, key_back_color: *color_orange, width: 15}
       - {click: ",{Eisu_toggle}", key_text_size: 15}
       - {click: ".{Eisu_toggle}", key_text_size: 15}
       - {click: "~{Eisu_toggle}", key_text_size: 15}
       - {click: "?{Eisu_toggle}", key_text_size: 15}
       - {click: "!{Eisu_toggle}", key_text_size: 15}
       # ❷
-      - {click: "switch_punct_cn", key_text_size: 13, key_back_color: key_bg_gray_dark, width: 15}
+      - {click: "switch_punct_cn", key_text_size: 13, key_back_color: *color_gray_dark, width: 15}
       - {click: "`{Eisu_toggle}", key_text_size: 15}
       - {click: "%{Eisu_toggle}", key_text_size: 15}
       - {click: "@{Eisu_toggle}", key_text_size: 15}
       - {click: ":{Eisu_toggle}", key_text_size: 15}
       - {click: ";{Eisu_toggle}", key_text_size: 15}
       # ❸
-      - {click: "backSpace", swipe_up: del_line, key_text_size: 25, key_text_offset_y: -5, key_back_color: key_bg_gray_dark, width: 15}
+      - {click: "backSpace", swipe_up: del_line, key_text_size: 25, key_text_offset_y: -5, key_back_color: *color_gray_dark, width: 15}
       - {click: "&{Eisu_toggle}", key_text_size: 15}
       - {click: "${Eisu_toggle}", key_text_size: 15}
       - {click: "\\", key_text_size: 15}
       - {click: "*{Eisu_toggle}", key_text_size: 15}
       - {click: "/{Eisu_toggle}", key_text_size: 15}
       # ❹
-      - {click: "go_back", key_text_size: 13, key_back_color: key_bg_gray_dark, width: 15}
+      - {click: "go_back", key_text_size: 13, key_back_color: *color_gray_dark, width: 15}
       - {click: "^{Eisu_toggle}", key_text_size: 15}
       - {click: "…{Eisu_toggle}", key_text_size: 15}
       - {click: "[]{Left}{Eisu_toggle}", key_text_size: 15}
       - {click: "<>{Left}{Eisu_toggle}", key_text_size: 15}
       - {click: "{}{Left}{Eisu_toggle}", key_text_size: 15}
 
-  keyboard_punct_cn:
+  symbols_cn:
     __include: /preset_keyboards/keyboard_config
     ascii_mode: 0
+    reset_ascii_mode: true
     width: 17
     keys:
       # ❶
-      - {click: "switch_punct_en", key_text_size: 13, key_back_color: key_bg_gray_dark, width: 15}
+      - {click: "switch_punct_en", key_text_size: 13, key_back_color: *color_gray_dark, width: 15}
       - {click: "，{Eisu_toggle}", label: " ，", key_text_size: 15}
       - {click: "。{Eisu_toggle}", label: " 。", key_text_size: 15}
       - {click: "、{Eisu_toggle}", label: " 、", key_text_size: 15}
       - {click: "？{Eisu_toggle}", label: " ？", key_text_size: 15}
       - {click: "！{Eisu_toggle}", label: " ！", key_text_size: 15}
       # ❷
-      - {click: "switch_punct_cn", key_text_size: 13, key_back_color: key_bg_orange, width: 15}
+      - {click: "switch_punct_cn", key_text_size: 13, key_back_color: *color_orange, width: 15}
       - {click: "｀{Eisu_toggle}", key_text_size: 15}
       - {click: "·{Eisu_toggle}", key_text_size: 15}
       - {click: "～{Eisu_toggle}", key_text_size: 15}
       - {click: "：{Eisu_toggle}", label: " ：", key_text_size: 15}
       - {click: "；{Eisu_toggle}", label: " ；", key_text_size: 15}
       # ❸
-      - {click: "backSpace", swipe_up: del_line, key_text_size: 25, key_text_offset_y: -5, key_back_color: key_bg_gray_dark, width: 15}
+      - {click: "backSpace", swipe_up: del_line, key_text_size: 25, key_text_offset_y: -5, key_back_color: *color_gray_dark, width: 15}
       - {click: "/{Eisu_toggle}", key_text_size: 15}
       - {click: "￥{Eisu_toggle}", key_text_size: 15}
       - {click: "……{Eisu_toggle}", key_text_size: 15}
       - {click: "“”{Left}{Eisu_toggle}", key_text_size: 15}
       - {click: "‘’{Left}{Eisu_toggle}", key_text_size: 15}
       # ❹
-      - {click: "go_back", key_text_size: 13, key_back_color: key_bg_gray_dark, width: 15}
+      - {click: "go_back", key_text_size: 13, key_back_color: *color_gray_dark, width: 15}
       - {click: "ˇ{Eisu_toggle}", key_text_size: 15}
       - {click: "（）{Left}{Eisu_toggle}", key_text_size: 15}
       - {click: "［］{Left}{Eisu_toggle}", key_text_size: 15}
@@ -352,8 +364,8 @@ preset_keys:
   return: {label: Enter, preview: ↩, send: Return}
 
 
-  switch_punct_en: {label: "英", send: Eisu_toggle, select: "keyboard_punct_en"}
-  switch_punct_cn: {label: "中", send: Eisu_toggle, select: "keyboard_punct_cn"}
+  switch_punct_en: {label: "英", send: Eisu_toggle, select: "symbols"}
+  switch_punct_cn: {label: "中", send: Eisu_toggle, select: "symbols_cn"}
 
-  switch_punct: {label: "符", send: Eisu_toggle, select: "keyboard_punct_en"}
-  switch_number: {label: "123", send: Eisu_toggle, select: "keyboard_number"}
+  switch_punct: {label: "符", send: Eisu_toggle, select: "symbols"}
+  switch_number: {label: "123", send: Eisu_toggle, select: "number"}
