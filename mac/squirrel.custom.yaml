@@ -1,4 +1,0 @@
-patch:
-  style/horizontal: true 
-  app_options/com.jetbrains.intellij.ce/ascii_mode: true
-  app_options/com.jetbrains.intellij.ce/vim_mode: true
